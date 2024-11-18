@@ -1,0 +1,35 @@
+{
+  "greeting": "Bonjour!",
+  "bye": "Au revoir!",
+  "about-title": "À propos de VunaDeile",
+  "about-content": "Babi Games est un jeu de loterie qui offre aux participants la chance de gagner divers prix chaque jour. Une voiture IST chaque jour, 3 Bajajs chaque semaine, 1 Bodaboda chaque jour. 5 Smart TV chaque jour, 20 smartphones chaque jour et 1 iPhone 15 Pro Max chaque jour. Les joueurs participent en composant le *150*80# puis en sélectionnant le numéro du prix souhaité et en payant le montant correspondant, ils reçoivent ensuite des jetons qui seront directement inclus dans le tirage quotidien qui sera diffusé chaque jour en direct à la télévision ITV sous la gestion d'un représentant du Conseil des jeux de loterie de Tanzanie.",
+  "about-content-2": "Babi Games est un jeu de tirage de loterie qui offre aux participants la chance de gagner chaque jour une voiture IST toute neuve pour un gagnant et un bonus de 10 millions de shillings pour 10 gagnants chaque jour. Les joueurs participent en payant 1000 TSH au numéro de l'entreprise 664455 en utilisant leur numéro de téléphone comme numéro de référence, ils reçoivent ensuite des jetons qui seront automatiquement inclus dans le tirage quotidien qui se tiendra chaque jour pour obtenir un gagnant de voiture et 10 gagnants d'un million chacun.",
+  "Please contact us via email": "Veuillez nous contacter par e-mail",
+  "contact-content": "Vous avez une question ? Nous serions ravis de vous entendre.",
+  "process": "processus",
+  "process-content": "C'est facile, vous pouvez jouer via les réseaux Airtel, Vodacom, Tigo et Halotel. Prenez votre téléphone et composez <b>*150*80#</b> Choisissez le numéro du cadeau que vous aimez ou choisissez Kombo pour participer au tirage de tous les cadeaux, complétez votre transaction en entrant le montant du cadeau que vous voulez et entrez votre numéro secret. Vous recevrez une confirmation de transaction par SMS de votre réseau mobile et vous recevrez bientôt un message court, un SMS, avec un jeton de Babi Games pour entrer dans le tirage du jour qui se tiendra en direct à ITV tous les jours à douze heures et dix minutes du soir.",
+  "Dial": "Composer",
+  "ongoing prizes": "Prix en cours",
+  "winner for draw": "Gagnant du tirage",
+  "winners for draw": "Gagnants du tirage",
+  "Million": "Million",
+  
+  "Full Names": "Noms Complet",
+  "Enter Your Full Names": "Entrez vos noms complet",
+  "Message": "Message",
+  "Enter Your Message": "Entrez votre message",
+  "Email": "Email",
+  "Enter Your Email": "Entrez votre email",
+  
+  "contacts": "Contacts",
+  "Powered by": "Propulsé par ",
+  "Copyright": "Droit d'auteur",
+  "kiswahili": "Swahili",
+  "English": "Anglais",
+  "head": {
+    "About": "À propos",
+    "how": "Comment participer",
+    "prizes": "Prix",
+    "contact": "Contactez-nous"
+  }
+}

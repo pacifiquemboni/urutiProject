@@ -1,0 +1,35 @@
+{
+  "greeting": "Hello!",
+  "bye": "Goodbye!",
+  "about-title": "About VunaDeile",
+  "about-content": "Vuna Deile is a lottery game that gives participants a chance to win various prizes every day. One IST car every day, 3 Bajajs every week. 1 Bodaboda every day. Smart TV 5 every day. 20 smartphones every day and 1 iPhone 15 pro max every day. Players participate by dialing *150*80# and then select the prize number they want and pay the amount of money for the respective prize and then they receive Tokens that will be entered directly into the Daily Draw that will be held every day directly through ITV television and under management of a representative from the Tanzania Lottery Games Board.",
+  "about-content-2": "Vuna Deile is a lottery Draw Game that gives participants the chance to win a brand new IST Car to one winner every day and a bonus of 10 Million shillings to 10 winners every day. Players participate by paying 1000 TSH to Company number 664455 using their phone/mobile number as the reference number, they then receive Tokens that will automatically be entered into the daily Draw that will be held every day to get one Car Winner and 10 winners of one million each.",
+  "Please contact us via email": "Please contact us via email",
+  "contact-content": "Have Any Question? We Would Love To Hear From You.",
+  "process": "process",
+  "process-content": "It's easy, You can play through Airtel, Vodacom, Tigo and Halotel networks. Pick up your phone and then dial <b>*150*80#</b> Choose the number of the gift you like or choose Kombo to enter the draw of all the gifts, Complete your transaction by entering the amount of the gift you want and enter your secret number. You will receive an SMS confirmation of the transaction from your mobile network and soon you will receive a short message that is an SMS, with a token from Vuna Deile and enter the draw of the day that will be held live through ITV at twelve and 10 minutes in the evening every day.",
+  "Dial": "Dial",
+  "ongoing prizes": "Ongoing Prizes",
+  "winner for draw": "Winner for Draw",
+  "winners for draw": "Winners for Draw",
+  "Million": "Million",
+
+  "Full Names": "Full Names",
+  "Enter Your Full Names": "Enter Your Full Names",
+  "Message": "Message",
+  "Enter Your Message": "Enter Your Message",
+  "Email": "Email",
+  "Enter Your Email": "Enter Your Email",
+
+  "contacts": "Contacts",
+  "Powered by": "Powered by ",
+  "Copyright": "Copyright",
+  "kiswahili": "Swahili",
+  "English": "English",
+  "head": {
+    "About": "About",
+    "how": "How to Participate",
+    "prizes": "Prizes",
+    "contact": "Contact Us"
+  }
+}

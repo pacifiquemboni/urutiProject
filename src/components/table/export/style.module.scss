@@ -1,0 +1,23 @@
+.dropdown_content {
+  right: 0%;
+  position: absolute;
+  background-color: color-mix(in oklab, var(--background-color) 90%, var(--grey-color) 10%);
+  min-width: 10rem;
+  max-width: max-content;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 1rem 1rem;
+  border-radius: 0.2rem;
+
+  > div {
+    min-width: max-content;
+
+    gap: 1rem;
+    display: flex;
+    margin-bottom: 1rem;
+
+    select {
+      padding: 0.3rem 0.5rem;
+    }
+  }
+}

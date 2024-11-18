@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono",
+    "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono",
+    "Courier New", monospace;
+  --font-roboto: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-inter: Outfit, Inter, sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  --secondary-rgb: 254, 226, 59;
+  --secondary-color: theme(colors.secondary);
+  --primary-rgb: 103, 44, 137;
+  --primary-color: theme(colors.primary);
+  --dark-primary-rgb: 56, 0, 90;
+  --dark-primary-color: theme(colors.dark-primary);
+  --primary-rgb-2: 0, 50, 50;
+  --primary-color-2: theme(colors.primary2);
+  --grey-rgb: 136, 136, 136;
+  --grey-color: theme(colors.grey);
+  --dark-grey-rgb: 83, 83, 83;
+  --dark-grey-color: theme(colors.dark-grey);
+  --light-grey-rgb: 222, 222, 222;
+  --light-grey-color: theme(colors.light-grey);
+
+  --error-rgb: 235, 0, 0;
+  --error-color: theme(colors.error);
+
+  --foreground-rgb: 0, 0, 0;
+  --foreground-color: theme(colors.foreground);
+  --background-rgb: 255, 255, 255;
+  --background-color: theme(colors.background);
+
+  --primary-glow: conic-gradient(
+    from 180deg at 50% 50%,
+    #16abff33 0deg,
+    #0885ff33 55deg,
+    #54d6ff33 120deg,
+    #0071ff33 160deg,
+    transparent 360deg
+  );
+  --secondary-glow: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(
+    #00000080,
+    #00000040,
+    #00000030,
+    #00000020,
+    #00000010,
+    #00000010,
+    #00000080
+  );
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
+
+  --card-conic-bg: conic-gradient(from 55deg at 44.29% 53.34%, #ddd 0deg, #f3f3f3 360deg);
+
+  --body-width: min(95vw, 95%);
+}
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 0, 0, 0;
+
+  --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+  --secondary-glow: linear-gradient(
+    to bottom right,
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0),
+    rgba(1, 65, 255, 0.3)
+  );
+
+  --tile-start-rgb: 2, 13, 46;
+  --tile-end-rgb: 2, 5, 19;
+  --tile-border: conic-gradient(
+    #ffffff80,
+    #ffffff40,
+    #ffffff30,
+    #ffffff20,
+    #ffffff10,
+    #ffffff10,
+    #ffffff80
+  );
+
+  --callout-rgb: 20, 20, 20;
+  --callout-border-rgb: 108, 108, 108;
+  --card-rgb: 100, 100, 100;
+  --card-border-rgb: 200, 200, 200;
+
+  --card-conic-bg: conic-gradient(from 55deg at 44.29% 53.34%, #1e1e1e 0deg, #070707 360deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+    scroll-margin-block: 3rem;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+body,
+#root {
+  min-height: 100dvh;
+  max-width: min(100%, 100vw);
+  font-family: var(--font-inter);
+}
+
+.content-grid,
+.content-grid > .full-width {
+  --padding-inline: 1rem;
+  --content-max-width: 1200px;
+  --breakout-max-width: 1350px;
+  --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start full-left-start] minmax(var(--padding-inline), 1fr)
+    [breakout-start breakout-left-start] minmax(0, var(--breakout-size))
+    [content-start breakout-right-start full-right-start] min(
+      100% - (var(--padding-inline) * 2),
+      var(--content-max-width)
+    )
+    [content-end breakout-left-end full-left-end]
+    minmax(0, var(--breakout-size)) [breakout-end breakout-right-end]
+    minmax(var(--padding-inline), 1fr) [full-width-end full-right-end];
+
+  &:not(.full-width) {
+    overflow-x: clip;
+  }
+
+  > :not(.breakout, .breakout-left, .breakout-right, .full-width, .full-right, .full-left) {
+    grid-column: content;
+  }
+
+  > .breakout-left {
+    grid-column: breakout-left;
+  }
+  > .breakout-right {
+    grid-column: breakout-right;
+  }
+  > .breakout {
+    grid-column: breakout;
+  }
+
+  > .full-width {
+    grid-column: full-width;
+  }
+  > .full-right {
+    grid-column: full-right;
+  }
+  > .full-left {
+    grid-column: full-left;
+  }
+
+  @media (max-width: 1280px) {
+    --content-max-width: 1024px;
+    --breakout-max-width: 1150px;
+  }
+
+  @media (max-width: 1024px) {
+    --content-max-width: 900px;
+    --breakout-max-width: 950px;
+  }
+
+  @media (max-width: 900px) {
+    --content-max-width: 768px;
+    --breakout-max-width: 830px;
+  }
+
+  @media (max-width: 768px) {
+    --content-max-width: 640px;
+    --breakout-max-width: 700px;
+  }
+
+  @media (max-width: 640px) {
+    --content-max-width: 550px;
+    --breakout-max-width: 600px;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text {
+  &-balance {
+    text-wrap: balance;
+  }
+
+  &-pretty {
+    text-wrap: pretty;
+  }
+}

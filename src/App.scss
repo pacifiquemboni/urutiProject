@@ -1,0 +1,183 @@
+:where(.css-dev-only-do-not-override-1rqnfsa).ant-popover {
+  z-index: 15;
+}
+
+#react-tiny-popover-container {
+  z-index: 15;
+}
+
+.ReactModal {
+  &__Overlay {
+    background: rgb(var(--foreground-rgb), 0.5) !important;
+    z-index: 30;
+  }
+
+  &__Content {
+    position: absolute;
+    border: 1px solid rgb(204, 204, 204);
+    background: var(--background-color);
+    overflow: auto;
+    border-radius: 0.25rem;
+    outline: none;
+    padding: 1.25rem;
+
+    inset: 0.5rem;
+    width: min(40rem, 100% - 1rem);
+    max-width: 100%;
+    z-index: 20;
+    margin-left: auto;
+
+    &.size {
+      &_sm {
+        width: fit-content;
+        min-width: min(100%, 23rem);
+        height: fit-content;
+        max-height: min(100% - 1rem, 100dvh - 1rem);
+        inset: 0.5rem;
+        margin: auto;
+      }
+
+      &_conner {
+        width: fit-content;
+        min-width: min(100%, 15rem);
+        height: fit-content;
+        max-height: calc(100dvh - 2rem);
+        inset: 1rem 0 1rem auto;
+        margin: auto 3rem;
+
+        @media (max-width: 500px) {
+          margin: auto 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+.Toastify__toast-container {
+  width: 320px;
+}
+.Toastify__toast--default {
+  background: #fff;
+  color: #aaa;
+}
+.Toastify__toast--info {
+  background: #3498db;
+}
+.Toastify__toast--success {
+  background: #07bc0c;
+}
+.Toastify__toast--warning {
+  background: #f1c40f;
+}
+.Toastify__toast--error {
+  background: #e74c3c;
+}
+
+.back-current {
+  background-color: color-mix(in oklab, currentColor 15%, #0000 85%);
+  filter: saturate(2.5) brightness(0.9);
+}
+
+.hamburger {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+}
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+.hamburger-middle {
+  transform: translateY(7px);
+}
+.hamburger-bottom {
+  transform: translateY(14px);
+}
+.open {
+  transform: rotate(90deg);
+  transform: translateY(0);
+}
+.open .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translate(6px);
+}
+.open .hamburger-middle {
+  display: none;
+}
+.open .hamburger-bottom {
+  transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
+
+/* roulette */
+
+.token > span {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  margin-inline: 0.2rem;
+  background-color: #fff1;
+  border: 2px solid #ffffff11;
+  color: #ffb200;
+  border-radius: 0.4rem;
+}
+.roulette-number {
+  color: #ffb200;
+  text-shadow:
+    -1px -1px 1px #efede3,
+    0px 1px 0 #2e2e2e,
+    0px 1.5px 0 #2c2c2c,
+    0px 2px 0 #2a2a2a,
+    0px 2.5px 0 #282828,
+    0px 3px 0 #262626,
+    0px 3.5px 0 #242424,
+    2px 7px 5px rgba(0, 0, 0, 0.9),
+    5px 8px 5px rgba(0, 0, 0, 0.3),
+    8px 9px 8px rgba(0, 0, 0, 0.5),
+    8px 10px 35px rgba(0, 0, 0, 0.9);
+}
+
+.before {
+  position: fixed;
+  z-index: 90;
+  inset: 0;
+  max-height: 100dvh;
+  max-width: 100dvw;
+  margin: auto;
+  scale: 0;
+
+  &.anime {
+    animation: before_anime 1s ease 0s;
+  }
+}
+
+@keyframes before_anime {
+  0% {
+    scale: 0;
+    display: block;
+  }
+
+  50% {
+    scale: 1;
+  }
+  70% {
+    scale: 0.7;
+  }
+  80% {
+    scale: 1.2;
+  }
+
+  99% {
+    display: block;
+  }
+  100% {
+    scale: 0;
+    display: none;
+  }
+}

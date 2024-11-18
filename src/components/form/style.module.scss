@@ -1,0 +1,304 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+
+  .label {
+    display: block;
+    color: var(--dark-grey-color);
+    text-transform: capitalize;
+  }
+
+  input,
+  textarea,
+  select,
+  .input_value,
+  .autoHeight,
+  .autoHeight.valid {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    background-color: var(--light-grey-color);
+    border-radius: 0.2rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 300;
+    border: 0px solid transparent;
+    color: inherit;
+    outline-offset: -1px;
+
+    @apply placeholder:text-foreground placeholder:text-opacity-50;
+
+    &:focus {
+      outline: 1px solid var(--primary-color);
+    }
+
+    &.autoWidth {
+      width: fit-content;
+
+      &.input_value[placeholder]:empty::before {
+        content: attr(placeholder);
+        color: var(--grey-color, #888);
+      }
+
+      &.input_value[data-after]::after {
+        content: attr(data-after);
+        color: var(--grey-color, #888);
+        word-wrap: normal;
+        margin-left: 0.5rem;
+      }
+    }
+
+    &.autoHeight {
+      overflow: auto;
+      text-transform: none;
+
+      &:not(.valid, .hidden)::before,
+      *:empty::before {
+        content: attr(data-placeholder);
+        position: absolute;
+
+        @apply text-grey;
+      }
+    }
+
+    &.hidden {
+      position: absolute;
+      visibility: hidden !important;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  select {
+    background: var(--light-grey-color)
+      url("data:image/svg+xml,<svg height='0.75rem' width='0.75rem' viewBox='0 0 16 16' fill='%23000000' xmlns='http://www.w3.org/2000/svg'><path d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/></svg>")
+      no-repeat;
+    background-position: calc(100% - 0.75rem) center !important;
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  option {
+    color: black;
+    background-color: #fff;
+  }
+
+  .error {
+    padding-inline: 0.5rem;
+    font-size: 0.85rem;
+    color: red;
+    text-transform: capitalize;
+  }
+
+  .icons {
+    position: absolute;
+    right: 0;
+  }
+}
+
+.chechbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+
+  > span {
+    --background: var(--light-grey-color);
+    --color: currentColor;
+    --shadow: none;
+
+    color: var(--color);
+    border-radius: inherit;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+
+      position: absolute;
+      border-radius: inherit;
+
+      top: 0;
+      left: 0;
+      background-color: color-mix(in oklab, var(--color) 15%, #0000);
+      // background-color: var(--background);
+      box-shadow: var(--shadow);
+    }
+  }
+
+  input {
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+
+    &:checked ~ span {
+      --color: var(--primary-color);
+      // --color: #fff;
+      // --background: var(--primary-color);
+      // --shadow: 0 .1rem .2rem color-mix(in oklab, var(--color) 10%, #0001);
+    }
+
+    &,
+    &:after,
+    &:before,
+    *,
+    *:after,
+    *:before,
+    ~ .input_btn {
+      box-sizing: border-box;
+    }
+
+    &::-moz-selection,
+    &:after::-moz-selection,
+    &:before::-moz-selection,
+    *::-moz-selection,
+    *:after::-moz-selection,
+    *:before::-moz-selection,
+    ~ .input_btn::-moz-selection,
+    &::selection,
+    &:after::selection,
+    &:before::selection,
+    *::selection,
+    *:after::selection,
+    *:before::selection,
+    ~ .input_btn::selection {
+      background: none;
+    }
+  }
+
+  .input_btn {
+    outline: 0;
+    display: block;
+    width: 6em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .input_btn:after,
+  .input_btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+  }
+  .input_btn:after {
+    left: 0;
+  }
+  .input_btn:before {
+    display: none;
+  }
+  input:checked ~ .input_btn:after {
+    left: 50%;
+  }
+
+  input ~ .input_btn {
+    padding: 2px;
+    transition: all 0.2s ease;
+    font-family: sans-serif;
+    perspective: 100px;
+  }
+  input ~ .input_btn:after,
+  input ~ .input_btn:before {
+    display: inline-block;
+    transition: all 0.4s ease;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    line-height: 2em;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+  }
+  input ~ .input_btn:after {
+    content: attr(data-tg-on);
+    background: var(--primary-color);
+    transform: rotateY(-180deg);
+  }
+  input ~ .input_btn:before {
+    background: #000;
+    content: attr(data-tg-off);
+  }
+  input ~ .input_btn:active:before {
+    transform: rotateY(-20deg);
+  }
+  input:checked ~ .input_btn:before {
+    transform: rotateY(180deg);
+  }
+  input:checked ~ .input_btn:after {
+    transform: rotateY(0);
+    left: 0;
+  }
+  input:checked ~ .input_btn:active:after {
+    transform: rotateY(20deg);
+  }
+}
+
+.uploader {
+  position: relative;
+
+  flex-grow: 1;
+  border: 1px dashed #0001;
+  border-radius: 0.5rem;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    position: absolute;
+    inset: 0;
+
+    background-color: color-mix(in oklab, var(--background-color) 60%, #000 5%);
+    backdrop-filter: blur(5px);
+
+    border-radius: inherit;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hover {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    border-radius: inherit;
+    display: grid;
+    place-items: center;
+    background-color: #fff9;
+    backdrop-filter: blur(10px);
+
+    user-select: none;
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.1s ease;
+  }
+  &:hover .hover {
+    user-select: auto;
+    pointer-events: unset;
+    opacity: 1;
+  }
+}

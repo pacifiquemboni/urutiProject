@@ -1,0 +1,22 @@
+.header-dropdown {
+  animation: drop 0.2s ease-out;
+}
+
+@keyframes drop {
+  from {
+    translate: 100vw;
+  }
+  to {
+    translate: 0;
+  }
+}
+
+.header {
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+      90deg,
+      color-mix(in oklch, var(--primary-color) 50%, transparent) -30%,
+      color-mix(in oklch, var(--secondary-color) 50%, transparent) 150%
+    )
+    0 0 2/2 0;
+}

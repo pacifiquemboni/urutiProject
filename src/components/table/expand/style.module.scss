@@ -1,0 +1,9 @@
+.expandBox {
+  // background-color: var();
+  width: fit-content;
+
+  .span {
+    display: inline-block;
+    transition: rotate 0.2s ease;
+  }
+}

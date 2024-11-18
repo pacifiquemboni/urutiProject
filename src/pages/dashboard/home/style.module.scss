@@ -1,0 +1,57 @@
+.block {
+  container: block / inline-size;
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    @container (max-width: 33rem) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    > * {
+      flex: 1;
+    }
+  }
+}
+
+.details {
+  --padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--padding);
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--padding);
+
+    @container (min-width: 14rem) {
+      flex-direction: row;
+      gap: 0;
+
+      > :not(:first-of-type) {
+        padding-left: var(--padding);
+        border-left: 1px solid currentColor;
+      }
+      > :not(:last-of-type) {
+        padding-right: var(--padding);
+      }
+    }
+  }
+
+  article {
+    text-align: center;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    &.top {
+      font-size: 1.5rem;
+    }
+  }
+}

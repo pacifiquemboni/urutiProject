@@ -1,0 +1,17 @@
+.user-portal-header {
+  --blur-size: 90dvw;
+  --img-size: 30rem;
+
+  position: relative;
+  z-index: 10;
+  background-image: radial-gradient(rgb(var(--primary-color), 0.5), transparent 70%),
+    url(@assets/img/Looper1.png);
+  background-color: #000;
+  background-size:
+    var(--blur-size) 400%,
+    var(--img-size) var(--img-size);
+  background-position:
+    left calc(var(--blur-size) / -1.8) top 65%,
+    top 40% right -5%;
+  background-repeat: no-repeat;
+}

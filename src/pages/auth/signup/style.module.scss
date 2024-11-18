@@ -1,0 +1,44 @@
+.steps {
+  --size: 0.6rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: var(--size);
+
+  > * {
+    border-radius: calc(var(--size) * 2);
+  }
+
+  > b {
+    display: inline-block;
+    flex: 1;
+    height: calc(var(--size) / 2);
+    background: linear-gradient(90deg, var(--primary-color) 50%, var(--light-grey-color) 50%);
+    background-size: 200%;
+    background-position-x: 100%;
+    transition: background-position 0.2s ease;
+  }
+
+  > span,
+  a {
+    display: inline-block;
+    height: var(--size);
+    aspect-ratio: 1/1;
+    background-color: var(--light-grey-color);
+  }
+
+  > .active {
+    background-color: var(--primary-color);
+
+    ~ span,
+    ~ a {
+      background-color: var(--primary-color);
+    }
+
+    ~ b {
+      background-position-x: 0%;
+    }
+  }
+}

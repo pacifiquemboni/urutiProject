@@ -1,0 +1,69 @@
+.box {
+  --back-color: var(--light-grey-color);
+  /* --back-color: #0000; */
+  /* --back-color: #a491e2; */
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "aside header" "aside main";
+  gap: 0.5rem;
+  padding: 0.5rem;
+
+  > * {
+    @apply bg-background;
+    @apply rounded-lg;
+  }
+
+  &::before {
+    --min-size: 10rem;
+
+    content: "";
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15rem;
+    background: linear-gradient(180deg, var(--back-color) var(--min-size), transparent 100%);
+  }
+
+  > header {
+    grid-area: header;
+
+    position: sticky;
+    top: 0.5rem;
+    z-index: 15;
+
+    box-shadow:
+      0px -4rem 0 2rem var(--back-color),
+      0px 0 0 0.4rem var(--back-color),
+      -2rem 0 0 0.45rem var(--back-color),
+      2rem 0 0 0.45rem var(--back-color);
+  }
+  > aside {
+    grid-area: aside;
+    height: fit-content;
+    min-height: calc(100dvh - 1rem);
+    z-index: 16;
+
+    position: sticky;
+    top: 0.5rem;
+  }
+  > main {
+    grid-area: main;
+    z-index: 1;
+  }
+
+  &.mainOnly {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+  &.home {
+    > main {
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,138 @@
+@mixin backGradient {
+  background-color: var(--primary-color);
+  background-image: linear-gradient(90deg, var(--primary-color) -20%, var(--secondary-color) 160%);
+  background-repeat: no-repeat;
+  background-position: 0;
+  background-size: 150%;
+}
+
+.box {
+  --size-1: 70vmin;
+  --size-2: 120vmin;
+  --color: color-mix(in hsl, var(--primary-color) 30%, transparent);
+
+  background-image: radial-gradient(var(--color), transparent 70%),
+    radial-gradient(var(--color), transparent 70%);
+  background-size:
+    var(--size-1) var(--size-1),
+    var(--size-2) var(--size-2);
+  background-position:
+    calc(var(--size-1) / -2) 50%,
+    right calc(var(--size-2) / -2) bottom calc(var(--size-2) / -2);
+  background-repeat: no-repeat;
+
+  h1 span {
+    margin-inline: 0.3rem;
+  }
+}
+
+.sm_card {
+  border: 0.15rem solid color-mix(in hsl, var(--primary-color) 50%, transparent);
+  /* border-image: linear-gradient(to right bottom, red, green); */
+}
+
+.p_cards {
+  container: card/inline-size;
+  contain: paint;
+
+  > div {
+    --gap: 1rem;
+    --title-size: 14rem;
+
+    display: grid;
+    gap: var(--gap);
+    grid-template-areas: "title title" "img process";
+    grid-template-columns: min(50% - var(--gap), var(--title-size)) 1fr;
+    grid-template-rows: auto 1fr;
+
+    @container card (min-width: 40rem) {
+      grid-template-areas: "img title" "img process";
+    }
+
+    @container card (max-width: 23rem) {
+      grid-template-columns: 1fr;
+      grid-template-areas: "title" "process";
+
+      .img {
+        display: none;
+      }
+    }
+  }
+
+  .title {
+    grid-area: title;
+
+    // max-width: var(--title-size);
+  }
+  .process {
+    container: process/inline-size;
+    grid-area: process;
+
+    ol {
+      @container process (min-width: 30rem) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+  .img {
+    position: relative;
+    grid-area: img;
+
+    > img {
+      position: absolute;
+      max-width: 100%;
+    }
+  }
+}
+
+.about_img {
+  position: relative;
+  display: grid;
+  grid-template-columns: [one-start] 10% [two-start] 50% [one-end] 1fr [three-start] auto [two-end] 1.25rem [three-end];
+  grid-template-rows: [one-start] 2rem [two-start] auto [one-end] 1fr [three-start] auto [two-end] 1.25rem [three-end];
+
+  > :nth-child(1) {
+    grid-area: one;
+    z-index: 1;
+  }
+  > :nth-child(2) {
+    grid-area: two;
+    z-index: 0;
+    background-image: linear-gradient(160deg, var(--primary-color) -100%, transparent 100%);
+  }
+  > :nth-child(3) {
+    grid-area: three;
+    z-index: 2;
+  }
+}
+
+.gradient {
+  @include backGradient;
+  transition: 0.5s ease;
+
+  &.text {
+    background-clip: text;
+    color: transparent;
+  }
+
+  &:hover {
+    background-position: -200%;
+  }
+}
+
+.button {
+  --outline: 0.5rem;
+
+  @include backGradient;
+  border: 0px solid transparent;
+  outline: 0.3rem solid #000e;
+  outline-width: var(--outline);
+  outline-offset: calc(-0.05rem - var(--outline));
+  transition: 0.3s ease;
+
+  &:hover {
+    outline-width: 0.1rem;
+    outline-offset: -0.2rem;
+    background-position: -200%;
+  }
+}
