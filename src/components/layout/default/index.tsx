@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import Header from "./header";
-import FooterSection from "./footer";
+// import Header from "./header";
+// import FooterSection from "./footer";
 
 type props = {
   children: ReactNode;
@@ -9,9 +9,9 @@ type props = {
 export default function PageLayout({ children }: props) {
   return (
     <>
-      <Header />
-      <main className="content-grid">{children}</main>
-      <FooterSection />
+      {/* <Header /> */}
+      <main className="">{children}</main>
+      {/* <FooterSection /> */}
     </>
   );
 }

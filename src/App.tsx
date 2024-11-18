@@ -21,7 +21,6 @@ import {
   DASH_DRAW_ROUTE,
   DASHBOARD_PAYMENT_ROUTE,
   DASHBOARD_RADIO_ROUTE,
-  NewHome_ROUTE,
 } from "./helpers/routes";
 import Loader from "./components/etc/loader";
 
@@ -29,7 +28,7 @@ const AuthLayout = lazy(() => import("./components/layout/default/auth"));
 const PageLayout = lazy(() => import("./components/layout/default"));
 const DashboardLayout = lazy(() => import("./components/layout/dashboard"));
 
-const HomePage = lazy(() => import("./pages/home"));
+// const HomePage = lazy(() => import("./pages/home"));
 const Login = lazy(() => import("./pages/auth/login"));
 // const SignupPage = lazy(() => import("./pages/auth/signup"));
 
@@ -70,7 +69,7 @@ function App() {
             <Route path={`${SIGNUP_ROUTE}/*`} element={<SignupPage />} /> */}
           </Route>
           {/* newhome route */}
-          <Route path={NewHome_ROUTE} element={<NewHome />}></Route>
+          
           {/* Default pages */}
           <Route
             path={HOME_ROUTE}
@@ -80,7 +79,9 @@ function App() {
               </PageLayout>
             }
           >
-            <Route index element={<HomePage />} />
+            {/* <Route index element={<HomePage />} /> */}
+            <Route index element={<NewHome />} />
+
           </Route>
 
           {/* dashboard pages */}

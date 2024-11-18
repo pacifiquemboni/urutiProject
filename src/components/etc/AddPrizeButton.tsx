@@ -12,25 +12,7 @@ import imageplaceholder from "@assets/img/placeholder.jpeg";
 import { uploadImage } from "@/helpers/etc";
 import { useAppDispatch } from "@/redux/hook";
 import { AddProductsThunk, EditProductsThunk } from "@/redux/features/actions/products";
-// import SimpleCheckbox from "../form/simple_checkbox";
 import { GetCategoriesThunk } from "@/redux/features/actions/radios";
-// import SearchAsyncSelect from "../form/select/searchSelect";
-// import { axios } from "@/redux/axios";
-
-// const filterRadios = async (inputValue: string) => {
-//   try {
-//     const res = await axios.get(`/v1/category?search=${inputValue}`, {
-//       params: { pageSize: 8, pageNumber: 1 },
-//     });
-
-//     return res?.data?.list?.map?.((one: any) => ({
-//       value: one?.id,
-//       label: one?.name,
-//     }));
-//   } catch (error) {
-//     return [];
-//   }
-// };
 
 type Product = any;
 
@@ -40,7 +22,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
       name: updateProduct?.name || "",
 
       description: updateProduct?.description || "",
-
+      productId: updateProduct?.id,
       picture: updateProduct?.picture || "",
       isAvailable: Boolean(updateProduct?.isAvailable),
       isCallNeeded: Boolean(updateProduct?.isCallNeeded),
@@ -54,7 +36,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
     }),
     [
       updateProduct?.name,
-
+      updateProduct?.id,
       updateProduct?.description,
       updateProduct?.picture,
       updateProduct?.categoryId,
@@ -67,9 +49,10 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
       updateProduct?.productCost,
     ],
   );
+  console.log("updateproduct data:", name);
 
   const dispatch = useAppDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [file, setFile] = useState<any>(null);
   const [categories, setCategories] = useState<any[]>([]);
   // const [radioId, setRadioId] = useState(null);
@@ -129,8 +112,9 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
         //   const { radioId, ...newData } = data;
         //   data = newData as any;
         // }
+
         if (updateProduct) {
-          await dispatch(EditProductsThunk({ data, id: updateProduct?.productId })).unwrap();
+          await dispatch(EditProductsThunk({ data, id: updateProduct?.id })).unwrap();
         } else {
           const response = await dispatch(
             AddProductsThunk({ ...data, isAvailable: true }),
@@ -226,7 +210,10 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                   </div>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div className="flex flex-col justify-between">
-                      <label htmlFor="" className="">Category</label>
+                      <label htmlFor="" className="">
+                        Category
+                      </label>
+
                       <select
                         name="categoryId"
                         value={values.categoryId}
@@ -234,9 +221,10 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                         onBlur={handleBlur}
                         className=" w-full h-12 bg-[#DEDEDE] rounded sm:col-span-2"
                       >
-                        <option value=""  className="text-grey">
+                        <option value="" disabled className="text-grey">
                           Select a Category
                         </option>
+
                         {categories.length === 0 ? (
                           <option disabled>Loading categories...</option>
                         ) : (
@@ -260,6 +248,13 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.name)}
                     />
+                    {updateProduct ? (
+                      <p className="text-green">
+                        Select a new category or select the current category
+                      </p>
+                    ) : (
+                      <p></p>
+                    )}
 
                     {/* <Input
                       type="text"
@@ -279,7 +274,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       label="description"
                       placeholder="Enter Description"
                       error={`${errors.description || ""}`}
-                      Value={values.description}
+                      defaultValue={values.description}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.description)}
@@ -327,7 +322,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       label="number Of Winners"
                       placeholder="Enter Number Of Winners"
                       error={`${errors.numberOfWinners || ""}`}
-                      Value={values.numberOfWinners}
+                      defaultValue={values.numberOfWinners}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.numberOfWinners)}
@@ -342,7 +337,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       }
                       placeholder="Enter Cost"
                       error={`${errors.productCost || ""}`}
-                      Value={values.productCost}
+                      defaultValue={values.productCost}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.productCost)}
@@ -353,7 +348,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       label="Draw Period"
                       placeholder="Enter Draw Period"
                       error={`${errors.drawPeriod || ""}`}
-                      Value={values.drawPeriod}
+                      defaultValue={values.drawPeriod}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.drawPeriod)}
@@ -368,7 +363,7 @@ export default function AddPrizeButton({ updateProduct }: { updateProduct?: Prod
                       }
                       placeholder="Enter Play Amount"
                       error={`${errors.playAmount || ""}`}
-                      Value={values.playAmount}
+                      defaultValue={values.playAmount}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       isTouched={Boolean(touched.playAmount)}

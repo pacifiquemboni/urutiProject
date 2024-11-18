@@ -1,6 +1,6 @@
 const GeneralDiscusion = () => {
   return (
-    <div className="w-full  bg-[#f0f3f7]">
+    <div className="w-full z-10  bg-[#f0f3f7]">
       <div className="mx-1 lg:mx-24 py-10">
         <div>
           <h1 className="font-bold text-3xl text-center">Spin the Wheel - general discussion</h1>

@@ -1,61 +1,38 @@
-import spin from "../../assets/newassets/spin.png";
-import message from "../../assets/newassets/message.png";
-import embended from "../../assets/newassets/guru-embed-code.png";
+import logo from "../../assets/logo.png";
+import ValuesIcon from "../../assets/values.png";
+import whoWeAreIcon from "../../assets/whoWeare.svg";
 const AboutLeft = () => {
   return (
     <div>
       {/* about left */}
       <div className="w-full lg:w-80  text-white flex flex-col gap-5">
         <div className="border border-[#4a5b68] bg-[#222e38]">
-          <img src={spin} alt="" className="w-full" />
+          <img src={logo} alt="" className="w-full border-b border-[#4a5b68]" />
           <div className="flex gap-2 justify-center py-3">
-            <img src={message} alt="" />
-            <h1 className="text-center">GAME INFORMATION</h1>
+            <img src={whoWeAreIcon} alt="" className="w-5 h-5" />
+
+            <h1 className="text-center">Who We Are</h1>
           </div>
 
           <div className="p-3">
-            <table className=" w-full">
-              <tr className="text-left">
-                <th>
-                  <h3>Game Developer</h3>
-                </th>
-                <th className="w-6">
-                  <h3>Woohoo Games</h3>
-                </th>
-              </tr>
-              <tbody>
-                <tr>
-                  <td>
-                    <p>Progresive Jackpot</p>
-                  </td>
-                  <td className="text-right">x</td>
-                </tr>
-                <tr>
-                  <td>
-                    <p>configurable Winlines</p>
-                  </td>
-                  <td className="text-right">x</td>
-                </tr>
-                <tr>
-                  <td>
-                    <p>Gamble feature</p>
-                  </td>
-                  <td className="text-right">x</td>
-                </tr>
-              </tbody>
-            </table>
+            <p>
+              Our mission is to bring excitement and opportunities to everyone through innovative
+              gaming experiences.
+            </p>
           </div>
         </div>
 
-        <div className="hidden lg:block border border-[#4a5b68] bg-[#222e38]">
+        <div className="border border-[#4a5b68] bg-[#222e38]">
+          <div className="flex gap-2 justify-center py-3">
+            <h1 className="text-center">Our Values</h1>
+          </div>
           <div className="flex items-center p-3">
-            <img src={embended} alt="" />
-            <h1 className="text-center">Feel Free to add this game to your website.</h1>
+            <img src={ValuesIcon} alt="" width={150} />
+            <h1 className="text-center">
+              Transparency, Fairness, <br /> and Fun
+            </h1>
           </div>
-          <hr />
-          <div className="bg-[#44be4c] m-4 h-10 text-center">
-            <h1 className="">Copy Embed Code</h1>
-          </div>
+          
         </div>
       </div>
     </div>

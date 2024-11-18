@@ -36,6 +36,28 @@ export const GetAllProductsThunk = createAsyncThunk(
     }
   },
 );
+export const GetAllProductsByCategoryIdThunk = createAsyncThunk(
+  "products/fetchAll",
+  async (data: { categoryId: string; pageSize?: number }, { rejectWithValue }) => {
+    try {
+      const res = await axios.get("/v1/product", {
+        headers: { "Content-Type": "application/json" },
+        params: { ...data, pageSize: data.pageSize || 1000 }, // Default pageSize to 1000 if not provided
+      });
+
+      if (res?.data?.error) {
+        console.error("API Error:", res.data.error);
+        return rejectWithValue(res.data.error); // Handle API-level errors
+      }
+
+      console.log("Fetched Products:", res.data);
+      return res.data; // Assume res.data contains the list of products
+    } catch (error: any) {
+      console.error("Fetch Error:", error.message || error);
+      return rejectWithValue(error.response?.data?.message || "An error occurred while fetching products.");
+    }
+  }
+);
 
 export const AddProductsThunk = createAsyncThunk(
   "products_add",

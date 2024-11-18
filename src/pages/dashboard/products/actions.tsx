@@ -99,100 +99,6 @@ function ToggleCall({ data }: { data: any }) {
   );
 }
 
-// const filterRadios = async (inputValue: stborder) => {
-//   try {
-//     const res = await axios.get(`/v1/category`, {
-//       params: { pageSize: 8, pageNumber: 1, search: inputValue },
-//     });
-
-//     return res?.data?.list?.map?.((one: any) => ({
-//       value: one?.id,
-//       label: one?.name,
-//     }));
-//   } catch (error) {
-//     return [];
-//   }
-// };
-
-// export function AddToRadio({ data }: { data: any }) {
-//   const [isSubmitting, setSubmitting] = useState(false);
-//   const dispatch = useAppDispatch();
-//   const [radioId, setRadioId] = useState("");
-//   const [open, setOpen] = useState(false);
-
-//   const del = useCallback(async () => {
-//     setSubmitting(true);
-//     try {
-//       console.log("edit", radioId);
-//       await dispatch(EditProductsThunk({ data: { ...data, radioId }, id: data?.id })).unwrap();
-//       setOpen(false);
-//     } catch (error) {
-//       // error
-//     }
-//     setSubmitting(false);
-//   }, [data, dispatch, radioId]);
-
-//   return (
-//     <>
-//       <div
-//         className="px-4 py-2 flex items-center hover:bg-black hover:bg-opacity-5"
-//         onClick={() => setOpen(true)}
-//       >
-//         <IconRadio className="w-5" />
-//         <span className="pl-2">Add to Radio</span>
-//       </div>
-//       <Modal
-//         isOpen={open}
-//         onRequestClose={() => setOpen(false)}
-//         size="sm"
-//         className="overflow-visible"
-//       >
-//         <ModalTitle title="Add to Radio" onClose={() => setOpen(false)} />
-//         <label htmlFor="radioId" className="sm:col-span-2" onClick={(e) => e.stopPropagation()}>
-//           <span className="text-neutral-700 mb-2 inline-block">Select Radio</span>
-//           <SearchAsyncSelect
-//             id="radioId"
-//             name="radioId"
-//             className="bg-neutral-200"
-//             styles={{
-//               control: (base) => ({
-//                 ...base,
-//                 border: "none",
-//                 boxShadow: "none",
-//                 background: "transparent",
-//                 borderRadius: ".2rem",
-//               }),
-//               valueContainer: (base) => ({ ...base, paddingInline: "1rem" }),
-//             }}
-//             filterFn={filterRadios}
-//             onChange={(value: any) => setRadioId(value?.value)}
-//             defaultInputValue={""}
-//           />
-//         </label>
-//         <div className="flex justify-end pt-2 gap-2">
-//           <Button
-//             outlined
-//             disabled={isSubmitting}
-//             onClick={() => setOpen(false)}
-//             size="xsm"
-//             className="!rounded-full"
-//           >
-//             No, thanks
-//           </Button>
-//           <Button
-//             onClick={del}
-//             disabled={isSubmitting}
-//             size="xsm"
-//             className="!rounded-full"
-//             icon={isSubmitting && <IconCircle color="inherit" size={16} />}
-//           >
-//             Yes, Activate
-//           </Button>
-//         </div>
-//       </Modal>
-//     </>
-//   );
-// }
 
 function Bonuses({ product }: { product: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -274,19 +180,19 @@ function BonusComponent({ product, setIsModalOpen }: { product: any; setIsModalO
           <div className="flex gap-4">
             <div
               onClick={() => changeView("bonuses")}
-              className={`cursor-pointer p-2 border-b border-b-2 ${view == "bonuses" ? "text-primary border-primary" : "border-transparent"}`}
+              className={`cursor-pointer p-2  border-b-2 ${view == "bonuses" ? "text-primary border-primary" : "border-transparent"}`}
             >
               Bonuses
             </div>
             <div
               onClick={() => changeView("assign")}
-              className={`cursor-pointer p-2 border-b border-b-2 ${view == "assign" ? "text-primary border-primary" : "border-transparent"}`}
+              className={`cursor-pointer p-2  border-b-2 ${view == "assign" ? "text-primary border-primary" : "border-transparent"}`}
             >
               Assign
             </div>
             <div
               onClick={() => changeView("unassign")}
-              className={`cursor-pointer p-2 border-b border-b-2 ${view == "unassign" ? "text-primary border-primary" : "border-transparent"}`}
+              className={`cursor-pointer p-2  border-b-2 ${view == "unassign" ? "text-primary border-primary" : "border-transparent"}`}
             >
               Unassign
             </div>

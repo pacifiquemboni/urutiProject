@@ -85,7 +85,7 @@ export default function DashRadioPage() {
           return res?.list;
         } else {
           const res = await dispatch(GetCategoriesThunk(params)).unwrap();
-console.log("categories,",res);
+          console.log("categories,", res);
 
           return res?.list;
         }

@@ -3,6 +3,7 @@ import DEMO from "./demo";
 import Footer from "./footer";
 import GeneralDiscusion from "./generalDiscussion";
 import NEWHEADER from "./header";
+// import SimilarGames from "./similarGames";
 // import JoinFree from "./joinFree";
 
 const NewHome = () => {
@@ -11,6 +12,8 @@ const NewHome = () => {
     <NEWHEADER/>
     <DEMO />
     <About />
+    {/* <CategoryProducts /> */}
+    {/* <SimilarGames /> */}
     <GeneralDiscusion />
     <Footer />
 
