@@ -8,9 +8,12 @@ import star from "../../assets/newassets/star.png";
 import winner from "../../assets/newassets/winner.png";
 import { FiSearch, FiMenu, FiX } from "react-icons/fi";
 import { useState } from "react";
+import OnlineCasinos from "./models/onlineCasino";
 
 const NEWHEADER = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [onlineCasinoOpen, setOnlineCasinoOpen] = useState(false);
+
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   return (
@@ -18,17 +21,14 @@ const NEWHEADER = () => {
       {/* Top section */}
       <div className="flex items-center  lg:mx-24 gap-5 pt-2">
         {/* Mobile Menu Icon */}
-        <button
-          className="lg:hidden p-2 text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
+        <button className="lg:hidden p-2 text-white" onClick={() => setMenuOpen(!menuOpen)}>
           <FiMenu size={24} />
         </button>
         {/* Logo */}
         <div>
           <img src={CasinoLogo} alt="Casino Logo" width={90} />
         </div>
-        
+
         {/* Search Input (Inline on larger screens) */}
         <div className="hidden lg:flex flex-1 items-center border border-gray-300 p-2 bg-[#19232c] shadow-sm">
           <input
@@ -50,7 +50,7 @@ const NEWHEADER = () => {
           <div className="text-white w-1 bg-white">|</div>
           <img src={Globe} alt="Globe" width={20} />
         </div>
-        
+
         {/* Login and Signup */}
         <div className="flex flex-row">
           <div className="w-20 h-10 border flex flex-col bg-[#19232c] justify-center">
@@ -61,19 +61,75 @@ const NEWHEADER = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Navigation Links - Hidden on mobile */}
       <div className="hidden lg:block mt-1">
-        <nav className="flex mx-24 text-white font-bold justify-between items-center h-8">
-          <div className="flex flex-row" ><img src={news} alt="" />Online Casinos</div>
-          <div className="flex flex-row border-b-4 border-green-500"><img src={news} alt="" />Games</div>
-          <div className="flex flex-row"><img src={gift} alt="" />Bonuses</div>
-          <div className="flex flex-row"><img src={news} alt="" />Guide</div>
-          <div className="flex flex-row"><img src={court} alt="" />Complaint</div>
-          <div className="flex flex-row"><img src={group} alt="" />Forum</div>
-          <div className="flex flex-row"><img src={star} alt="" />Review</div>
-          <div className="flex flex-row"><img src={winner} alt="" />Tournament</div>
-          <div className="flex flex-row"><img src={news} alt="" />News</div>
+        <nav className="flex mx-24 text-white font-bold  items-center h-8">
+          <div className=" hover:border-b-4 border-green-500">
+            <p
+              className="p-1 flex flex-row"
+              onMouseEnter={() => setOnlineCasinoOpen(true)}
+              onMouseLeave={() => setOnlineCasinoOpen(false)}
+            >
+              <img src={news} alt="" className="w-5 h-5" />
+              Online Casinos
+              {onlineCasinoOpen && (
+                <div className="w-5/6 mt-8 border z-30 absolute">
+                  <div className="bg-white">
+                    <OnlineCasinos />
+                  </div>
+                </div>
+              )}
+            </p>
+          </div>
+          <div className="border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={news} alt="" className="w-5 h-5" />
+              Games
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={gift} alt="" className="w-5 h-5" />
+              Bonuses
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={news} alt="" className="w-5 h-5" />
+              Guide
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={court} alt="" className="w-5 h-5" />
+              Complaint
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={group} alt="" className="w-5 h-5" />
+              Forum
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={star} alt="" className="w-5 h-5" />
+              Review
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={winner} alt="" className="w-5 h-5" />
+              Tournament
+            </p>
+          </div>
+          <div className="hover:border-b-4 border-green-500">
+            <p className="p-1 flex flex-row">
+              <img src={news} alt="" className="w-5 h-5" />
+              News
+            </p>
+          </div>
         </nav>
       </div>
 
@@ -98,22 +154,46 @@ const NEWHEADER = () => {
       {/* Mobile Side Menu */}
       {menuOpen && (
         <div className="fixed inset-0 bg-[#19232c] bg-opacity-95 z-50 p-4">
-          <button
-            className="text-white text-xl mb-4"
-            onClick={() => setMenuOpen(false)}
-          >
+          <button className="text-white text-xl mb-4" onClick={() => setMenuOpen(false)}>
             Close
           </button>
           <nav className="flex flex-col text-white font-bold space-y-4">
-            <div className="flex items-center gap-2"><img src={news} alt="" />Online Casinos</div>
-            <div className="flex items-center gap-2"><img src={news} alt="" />Games</div>
-            <div className="flex items-center gap-2"><img src={gift} alt="" />Bonuses</div>
-            <div className="flex items-center gap-2"><img src={news} alt="" />Guide</div>
-            <div className="flex items-center gap-2"><img src={court} alt="" />Complaint</div>
-            <div className="flex items-center gap-2"><img src={group} alt="" />Forum</div>
-            <div className="flex items-center gap-2"><img src={star} alt="" />Review</div>
-            <div className="flex items-center gap-2"><img src={winner} alt="" />Tournament</div>
-            <div className="flex items-center gap-2"><img src={news} alt="" />News</div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={news} alt="" />
+              Online Casinos
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={news} alt="" />
+              Games
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={gift} alt="" />
+              Bonuses
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={news} alt="" />
+              Guide
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={court} alt="" />
+              Complaint
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={group} alt="" />
+              Forum
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={star} alt="" />
+              Review
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={winner} alt="" />
+              Tournament
+            </div>
+            <div className="flex items-center gap-2 hover:border-b-4 border-green-500">
+              <img src={news} alt="" />
+              News
+            </div>
           </nav>
         </div>
       )}

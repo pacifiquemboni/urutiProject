@@ -3,6 +3,7 @@ import share from "../../assets/newassets/share.png"
 import message from "../../assets/newassets/message.png"
 import add from "../../assets/newassets/add.png"
 import money from "../../assets/newassets/money.png"
+import nb from "../../assets/newassets/nb.png"
 const ButtonSection = () => {
   return (
     <div className="bg-[#19232c] w-full">
@@ -30,7 +31,7 @@ const ButtonSection = () => {
               <p>Share</p>
             </button>
           </div>
-          <button className="hidden lg:block border px-2 py-1 bg-[rgba(123,140,152,.1)] border-[#4a5b68]">NB:</button>
+          <button className="hidden lg:block border px-2 py-1 bg-[rgba(123,140,152,.1)] border-[#4a5b68]"><img src={nb} alt="" /></button>
         </div>
         <hr className="py-3"/>
       </div>
