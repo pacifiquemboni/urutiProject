@@ -30,6 +30,7 @@ export default {
       },
       height: {
         '128': '32rem',
+        '144': '36rem',
       },
       zIndex: {
         '100': '100',

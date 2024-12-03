@@ -1,4 +1,32 @@
 {
+  "navbar": {
+    "home": "Accueil",
+    "ourGames": "Nos Jeux",
+    "winners": "Gagnants",
+    "howToPlay": "Comment Jouer",
+    "testimonials": "Témoignages",
+    "news": "Actualités",
+     "login": "Se Connecter",
+    "signup": "S'inscrire"
+  },
+  "demo": {
+    "rewardMessage": "Déverrouillez une cascade de récompenses—Plus vous jouez, plus vous gagnez !",
+    "like": "J'aime",
+    "unlike": "Je n'aime plus"
+  },
+  "category": {
+    "join_thrill": "Rejoignez l'excitation des jeux Babi",
+     "play_closer_prizes": "Chaque jeu vous rapproche des prix qui changent la vie ! Des récompenses en argent aux gadgets de rêve, il y en a pour tous les goûts. Ne vous contentez pas de regarder les autres gagner—soyez le prochain grand gagnant aujourd'hui !",
+     "select": "Sélectionner",
+    "products": "Produits",
+    "description": "Description",
+    "click_here_category": "Cliquez ici pour voir les produits de la catégorie",
+    "who_we_are": "Qui Nous Sommes",
+    "mission": "Notre mission est d'apporter de l'excitation et des opportunités à tous grâce à des expériences de jeu innovantes.",
+    "our_values": "Nos Valeurs",
+    "values": "Transparence, Équité, et Amusement"
+  },
+
   "greeting": "Bonjour!",
   "bye": "Au revoir!",
   "about-title": "À propos de VunaDeile",
@@ -13,14 +41,14 @@
   "winner for draw": "Gagnant du tirage",
   "winners for draw": "Gagnants du tirage",
   "Million": "Million",
-  
+
   "Full Names": "Noms Complet",
   "Enter Your Full Names": "Entrez vos noms complet",
   "Message": "Message",
   "Enter Your Message": "Entrez votre message",
   "Email": "Email",
   "Enter Your Email": "Entrez votre email",
-  
+
   "contacts": "Contacts",
   "Powered by": "Propulsé par ",
   "Copyright": "Droit d'auteur",

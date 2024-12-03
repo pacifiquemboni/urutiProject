@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ActivateCategoriesThunk, DisactivateCategoriesThunk, GetCategoriesThunk } from "../actions/radios";
+import { ActivateCategoriesThunk, DisactivateCategoriesThunk, GetCategoriesThunk, GetCategoryThunk } from "../actions/radios";
 
 const initialState = {
   list: [] as any[],
@@ -29,6 +29,21 @@ export const RadiosSlice = createSlice({
         state.status = "error";
       })
       .addCase(GetCategoriesThunk.fulfilled, (state, { payload, meta: { arg } }) => {
+        const { list, ...info } = payload;
+        state.filters = arg;
+        state.status = "success";
+        state.list = list;
+        state.info = info;
+      })
+      //get Radio
+      .addCase(GetCategoryThunk.pending, (state) => {
+        state.status = "pending";
+        state.fetchTimes += 1;
+      })
+      .addCase(GetCategoryThunk.rejected, (state) => {
+        state.status = "error";
+      })
+      .addCase(GetCategoryThunk.fulfilled, (state, { payload, meta: { arg } }) => {
         const { list, ...info } = payload;
         state.filters = arg;
         state.status = "success";

@@ -1,5 +1,5 @@
 import AboutLeft from "./AboutLeft";
-import AboutRight from "./aboutRight";
+import AboutRight from "./Categories";
 // import Casinos from "./casinos";
 import JoinFree from "./joinFree";
 
@@ -7,7 +7,7 @@ import JoinFree from "./joinFree";
 const About = () => {
   return (
     <div className="bg-[#19232c] py-10">
-      <div className="mx-2 lg:mx-24 flex flex-col lg:flex-row text-white">
+      <div className="mx-2 lg:mx-20 flex flex-col lg:flex-row text-white">
         <div className=" lg:hidden">
         <h1 className="text-3xl font-bold">Join the thrill of Babi Games</h1>
         <p className="text-xl">

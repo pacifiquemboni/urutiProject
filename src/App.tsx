@@ -21,8 +21,14 @@ import {
   DASH_DRAW_ROUTE,
   DASHBOARD_PAYMENT_ROUTE,
   DASHBOARD_RADIO_ROUTE,
+  Client_Login,
+  Client_Signup,
+  My_Wallet
 } from "./helpers/routes";
 import Loader from "./components/etc/loader";
+import ClientLogin from "./components/newHome/Auth/clientLogin";
+import ClientSignup from "./components/newHome/Auth/clientSignup";
+import MyWallet from "./components/newHome/MyWallet/MyWallet";
 
 const AuthLayout = lazy(() => import("./components/layout/default/auth"));
 const PageLayout = lazy(() => import("./components/layout/default"));
@@ -64,10 +70,17 @@ function App() {
             }
           >
             <Route path={LOGIN_ROUTE} element={<Login />} />
+            
 
             {/* <Route path={`${SIGNUP_ROUTE}/:step/*`} element={<SignupPage />} />
             <Route path={`${SIGNUP_ROUTE}/*`} element={<SignupPage />} /> */}
           </Route>
+          {/* Client Login */}
+          <Route path={Client_Login} element={<ClientLogin />} />
+          <Route path={Client_Signup} element={<ClientSignup />} />
+          <Route path={My_Wallet} element={<MyWallet />} />
+
+
           {/* newhome route */}
           
           {/* Default pages */}

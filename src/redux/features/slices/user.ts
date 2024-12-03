@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GetUserThunk, LoginThunk } from "../actions/users/me";
+import { GetUserThunk, LoginClientThunk, LoginThunk, SignupClientThunk } from "../actions/users/me";
 import { getToken } from "@/helpers/token";
 import Cookies from "js-cookie";
 import { LOGIN_ROUTE } from "@/helpers/routes";
@@ -9,6 +9,7 @@ const initialState = {
   user: null as ILoggedUser | null,
   status: "pending" as statusType,
   error: undefined as string | any,
+  loading: false,
   fetchTimes: 0,
   login: {
     status: "success" as statusType,
@@ -66,7 +67,55 @@ export const UserSlice = createSlice({
           state.login.error = undefined;
         }
       })
+      // client login
+      .addCase(LoginClientThunk.pending, (state) => {
+        state.login.status = "pending";
+        state.loading = true;
+        state.login.error = undefined;
+      })
+      .addCase(LoginClientThunk.rejected, (state, { payload }) => {
+        state.login.status = "error";
+        state.loading = false;
 
+        state.login.error = (payload as any)?.response?.data?.error;
+      })
+      .addCase(LoginClientThunk.fulfilled, (state, { payload }) => {
+        if (payload?.accessToken) {
+          Cookies.set("access_token", payload?.accessToken?.access_token, {
+            expires: payload?.accessToken?.expires_in,
+          });
+          Cookies.set("refresh_token", payload?.accessToken?.refresh_token, {
+            expires: payload?.accessToken?.refresh_expires_in,
+          });
+
+          state.access_token = payload?.accessToken?.access_token;
+          state.user = payload?.userInfo;
+          state.allowedPermissions.list = payload?.userInfo?.realmRoles;
+
+          state.login.status = "success";
+          state.loading = false;
+
+          state.login.error = undefined;
+        }
+      })
+      //client signup
+      .addCase(SignupClientThunk.pending, (state) => {
+        state.login.status = "pending";
+        state.loading = true;
+        state.login.error = undefined;
+      })
+      .addCase(SignupClientThunk.rejected, (state, { payload }) => {
+        state.login.status = "error";
+        state.loading = false;
+
+        state.login.error = (payload as any)?.response?.data?.error;
+      })
+      .addCase(SignupClientThunk.fulfilled, (state) => {
+        state.login.status = "success";
+        state.loading = false;
+
+        state.login.error = undefined;
+      })
       //get user
       .addCase(GetUserThunk.pending, (state) => {
         state.status = "pending";
@@ -78,7 +127,6 @@ export const UserSlice = createSlice({
         state.status = "success";
         state.user = payload;
         state.allowedPermissions.list = (payload?.roles || []).map((r: any) => r.name);
-
       });
   },
 });
