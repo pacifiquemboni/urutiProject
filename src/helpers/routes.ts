@@ -6,6 +6,9 @@ export const LOGIN_ROUTE = `${AUTH_ROUTE}/login`;
 export const SIGNUP_ROUTE = `${AUTH_ROUTE}/register`;
 
 export const NewHome_ROUTE =`/newhome`
+export const Client_Login =`/client-login`
+export const Client_Signup =`/client-signup`
+export const My_Wallet = `/my-wallet`
 
 // dashboard
 export const DASHBOARD_ROUTE = "/dashboard";

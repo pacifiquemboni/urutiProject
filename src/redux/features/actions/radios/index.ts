@@ -19,7 +19,19 @@ export const GetCategoriesThunk = createAsyncThunk(
     }
   },
 );
+export const GetCategoryThunk = createAsyncThunk(
+  "get_radio_by_Id",
+  async ({ id }: { id: string }, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/v1/category/${id}`);
 
+      if (res?.data?.error) return rejectWithValue(res?.data?.error);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
 export const GetRadiosExportThunk = createAsyncThunk(
   "radio_export",
   async (data: any = {}, { rejectWithValue }) => {

@@ -1,10 +1,14 @@
-import yes from "../../assets/newassets/yes.png";
+import yes from "../../assets/like.svg";
+import unlike from "../../assets/unlike.svg";
+
 // import share from "../../assets/newassets/share.png";
 // import message from "../../assets/newassets/message.png";
 // import add from "../../assets/newassets/add.png";
 // import money from "../../assets/newassets/money.png";
 // import nb from "../../assets/newassets/nb.png";
 import { Link } from "react-router-dom";
+import Tooltip from "./ToolKit";
+import { t } from "i18next";
 const ButtonSection = () => {
   return (
     <div className="bg-[#19232c] w-full">
@@ -39,9 +43,7 @@ const ButtonSection = () => {
                   </linearGradient>
                 </defs>
               </svg>
-              <p>
-                Facebook
-              </p>
+              <p>Facebook</p>
             </div>
             <div className="flex">
               <Link
@@ -108,9 +110,7 @@ const ButtonSection = () => {
                     </linearGradient>
                   </defs>
                 </svg>
-                <p>
-                  Instagram
-                </p>
+                <p>Instagram</p>
               </Link>
             </div>
             <div className="flex items-center gap-4 max-w-fit">
@@ -145,23 +145,25 @@ const ButtonSection = () => {
                 </defs>
               </svg>
 
-              <p>
-               0659 077 600
-                
-              </p>
+              <p>0659 077 600</p>
             </div>
-           
           </div>
 
-          <button className="  border flex items-center gap-2 px-2 py-1   ">
-            <div className="border-r flex flex-row p-2 gap-2 text-white justify-center">
-              <img src={yes} alt="" />
+          <div className="flex flex-col lg:flex-row items-center gap-2">
+            <div className=" flex flex-row p-1 gap-2 text-white items-center justify-center">
+              <Tooltip message={t("demo.like")}>
+                <img src={yes} alt="" className="w-8 h-8" />
+              </Tooltip>
               <p>65</p>
             </div>
-            <div className="flex flex-row p-2 gap-2 text-white font-bold">
-              <img src={yes} alt="" />
+
+            <div className="flex flex-row p-1 gap-2 text-white items-center font-bold">
+              <Tooltip message={t("demo.unlike")}>
+                <img src={unlike} alt="" className="w-8 h-8" />
+              </Tooltip>
+              <p>65</p>
             </div>
-          </button>
+          </div>
         </div>
       </div>
     </div>

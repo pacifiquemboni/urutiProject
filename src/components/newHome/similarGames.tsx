@@ -19,7 +19,7 @@ const SimilarGames = () => {
   };
   return (
     <div className="bg-[#19232c] w-full z-100">
-      <div className=" border border-red-600  mx-2 lg:mx-24">
+      <div className=" border border-red-600  mx-2 lg:mx-20">
         <h1 className="text-white font-bold text-3xl">Similar Games To BABI Spin The Wheel</h1>
         <Slider {...settings} className="relative  overflow-visible">
           <div

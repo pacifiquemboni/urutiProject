@@ -5,14 +5,17 @@ import wheel from "../../assets/newassets/144.jpg";
 import video from "../../assets/babivideo.mp4";
 // import money from "../../assets/newassets/money.png"
 import ButtonSection from "./buttonSection";
+import { useTranslation } from "react-i18next";
 
 const DEMO = () => {
   const [isFullscreenEnabled, setIsFullscreenEnabled] = useState(false);
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="  bg-orange-gradient flex items-center py-2 lg:p-5">
         <div
-          className=" lg:mx-24 w-full h-auto  relative border border-[#4a5b68]"
+          className=" lg:mx-20 w-full h-auto  relative border border-[#4a5b68]"
           style={{
             boxShadow: "6px 6px 6px rgba(0, 0, 0, 1)", // Updated shadow for better effect
           }}
@@ -31,7 +34,7 @@ const DEMO = () => {
             >
               <div className="flex flex-row justify-between bg-[#19232c] p-2">
                 <h1 className="w-full  text-center text-white font-bold">
-                  Unlock a Cascade of Rewards—The More You Play, the More You Win!
+                {t("demo.rewardMessage")}
                 </h1>
               </div>
 

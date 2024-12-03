@@ -1,6 +1,6 @@
 const Casinos = () => {
   return (
-    <div className="mx-1 lg:mx-24  flex flex-col gap-5 ">
+    <div className="mx-1 lg:mx-20  flex flex-col gap-5 ">
       <h1 className="text-lg lg:text-2xl font-bold text-white">Top real money casinos with Spin the Wheel</h1>
       <div className="border border-[#4a5b68] flex flex-col lg:flex-row justify-between p-3 bg-white">
         <div className="flex flex-col lg:flex-row gap-5 items-center">

@@ -4,7 +4,7 @@ import CasinoLogo from "../../assets/newassets/casinoguru_logo.svg";
 const Footer = () => {
   return (
     <div className="bg-[#19232c]">
-      <div className="mx-3 lg:mx-24 text-white ">
+      <div className="mx-3 lg:mx-20 text-white ">
         <div className="flex lg:flex-row flex-col justify-between py-10">
           <img src={CasinoLogo} alt="Casino Logo" width={90} />
           <div>

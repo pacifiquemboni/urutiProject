@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import About from "./About";
 import DEMO from "./demo";
 import Footer from "./footer";
@@ -9,16 +10,15 @@ import NEWHEADER from "./header";
 const NewHome = () => {
   return (
     <div className="">
-    <NEWHEADER/>
-    <DEMO />
-    <About />
-    {/* <CategoryProducts /> */}
-    {/* <SimilarGames /> */}
-    <GeneralDiscusion />
-    <Footer />
-
+      <NEWHEADER />
+      <DEMO />
+      <About />
+      {/* <CategoryProducts /> */}
+      {/* <SimilarGames /> */}
+      <GeneralDiscusion />
+      <Footer />
+      <ToastContainer />
     </div>
-    
   );
 };
 
