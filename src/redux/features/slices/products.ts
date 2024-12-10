@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { DeleteProductsThunk, EditProductsThunk, GetAllProductsByCategoryIdThunk, GetProductsThunk } from "../actions/products";
+import { ClientGetAllProductsThunk, DeleteProductsThunk, EditProductsThunk, GetAllProductsByCategoryIdThunk, GetProductByIdThunk, GetProductsThunk } from "../actions/products";
+
 
 const initialState = {
   list: [] as any[],
@@ -8,6 +9,7 @@ const initialState = {
   error: undefined as string | any,
   fetchTimes: 0,
   filters: {} as any,
+  loading: false,
 };
 
 export const ProductsSlice = createSlice({
@@ -35,7 +37,40 @@ export const ProductsSlice = createSlice({
         state.list = list;
         state.info = info;
       })
+      //get all product by client
+      .addCase(ClientGetAllProductsThunk.pending, (state) => {
+        state.status = "pending";
+        state.fetchTimes += 1;
+      })
+      .addCase(ClientGetAllProductsThunk.rejected, (state) => {
+        state.status = "error";
+      })
+      .addCase(ClientGetAllProductsThunk.fulfilled, (state, { payload, meta: { arg } }) => {
+        const { list, ...info } = payload;
+        state.status = "success";
+        if (arg) state.filters = arg;
+        state.list = list;
+        state.info = info;
+      })
+      //Get product by id
+      .addCase(GetProductByIdThunk.pending, (state) => {
+        state.status = "pending";
+        state.loading= true;
+        state.fetchTimes += 1;
+      })
+      .addCase(GetProductByIdThunk.rejected, (state) => {
+        state.status = "error";
+        state.loading=false;
 
+      })
+      .addCase(GetProductByIdThunk.fulfilled, (state, { payload, meta: { arg } }) => {
+        const { list, ...info } = payload;
+        state.status = "success";
+        if (arg) state.filters = arg;
+        state.list = list;
+        state.loading=false;
+        state.info = info;
+      })
       //get products by caregory id
       .addCase(GetAllProductsByCategoryIdThunk.pending, (state) => {
         state.status = "pending";
