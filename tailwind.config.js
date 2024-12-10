@@ -24,6 +24,8 @@ export default {
         'black-gradient': 'linear-gradient(180deg,#19232c);',
 
         'orange-gradient': 'radial-gradient(closest-side, #ff9771, #ff9771, #ff9771,#ff9771, #ab3e16,#bf4215,#75280c)',
+        'orange-bg-gradient': 'radial-gradient(closest-side, #ff9771, #ab3e16)',
+
 
 
 
