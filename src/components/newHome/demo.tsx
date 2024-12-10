@@ -15,9 +15,9 @@ const DEMO = () => {
     <>
       <div className="  bg-orange-gradient flex items-center py-2 lg:p-5">
         <div
-          className=" lg:mx-20 w-full h-auto  relative border border-[#4a5b68]"
+          className=" lg:mx-20 w-full h-auto flex flex-col  relative border border-[#4a5b68]"
           style={{
-            boxShadow: "6px 6px 6px rgba(0, 0, 0, 1)", // Updated shadow for better effect
+            boxShadow: "6px 6px 6px rgba(0, 0, 0, 1)",
           }}
         >
           <div className="h-96 w-full relative overflow-hidden">

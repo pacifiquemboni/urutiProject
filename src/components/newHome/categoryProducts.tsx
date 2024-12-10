@@ -87,13 +87,15 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
                     <p className="bg-[#222e38] flex flex-row px-2 gap-2 rounded-3xl items-center">
                       <img src={price} alt="" className="w-5 h-5" />
                       {item.playAmount} <span>Price</span>
+                      
                     </p>
                     {!user ? (
-                      <Link to={Client_Login}>
+                      <Link to={Client_Login} onClick={() => localStorage.setItem("productId", item.id)}>
                         <button className="bg-[#FF9671] px-2 rounded text-white">Play</button>
                       </Link>
                     ) : (
-                      <Link to={My_Wallet}>
+                      <Link to={My_Wallet} onClick={() => localStorage.setItem("productId", item.id)}>
+                        
                         <button className="bg-[#FF9671] px-2 rounded text-white">Play</button>
                       </Link>
                     )}
