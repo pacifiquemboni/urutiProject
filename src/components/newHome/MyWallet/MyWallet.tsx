@@ -1,153 +1,208 @@
 import { ToastContainer } from "react-toastify";
 import logo from "../../../assets/logo.png";
 import homeIcon from "../../../assets/home.svg";
-import copy from "../../../assets/copy.svg";
-import copycode from "../../../assets/copycode.svg";
-import logout from "../../../assets/logout.svg";
+import logouticon from "../../../assets/logout.svg";
 import wallet from "../../../assets/wallet.svg";
 import token from "../../../assets/tokens.svg";
 import profile from "../../../assets/profile.svg";
-import minus from "../../../assets/minus.svg";
 import add from "../../../assets/add.svg";
+import price from "../../../assets/price.svg";
+import notification from "../../../assets/notification.svg";
+
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
+import { GetProductByIdThunk } from "@/redux/features/actions/products";
+import CopyTextComponent from "./copyText";
+import { Link } from "react-router-dom";
+import { GetUserThunk } from "@/redux/features/actions/users/me";
+import Skeleton from "./skeleton";
+import Play from "./play";
+import Tooltip from "../ToolKit";
+import { HOME_ROUTE } from "@/helpers/routes";
+import MyTokens from "./myTokens";
+import TokenModel from "../modal/tokenModel";
+import { logout } from "@/redux/features/slices/player";
+import ChangeLanguage from "../ChangeLanguage";
+import { useTranslation } from "react-i18next";
 
 const MyWallet = () => {
+  const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { info, loading } = useAppSelector((s) => s.products) || {};
+  const { user, access_token } = useAppSelector((s) => s.user);
+  useLayoutEffect(() => {
+    if (!user && access_token) dispatch(GetUserThunk());
+  }, [access_token, dispatch, user]);
+  const productId = localStorage.getItem("productId");
+  // console.log("prodcuctId:", productId);
+  useEffect(() => {
+    if (productId) {
+      dispatch(GetProductByIdThunk(productId));
+    }
+  }, [dispatch, productId]);
+  // console.log("by id info", info);
+  // console.log("user found", user);
+  const handleHomeRedirect = () => {
+    window.location.assign(HOME_ROUTE);
+  };
+
+  const handleOpenModel = () => {
+    setIsModalVisible(true);
+  };
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+  const click = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
   return (
-    <div className=" ">
-      <div className="bg-[#19232c] text-white shadow-xl">
-        <div className="flex flex-row items-center justify-between lg:mx-20">
+    <div className="cursor-default ">
+      <div className="bg-[#19232c]  text-white shadow-xl">
+        <div className="flex flex-row items-center justify-between mx-2 lg:mx-20">
           <img src={logo} className="w-16 h-16" />
           <div className="flex flex-row items-center gap-2">
-            <p className="flex flex-row gap-2 hover:border-b-4 border-[#FF9671]">
-              <img src={homeIcon} alt="" className="w-5 h-5" />
-              Home
-            </p>
+            <Link to={"/"}>
+              <p className="flex flex-row gap-2 hover:border-b-4 border-[#FF9671]">
+                <img src={homeIcon} alt="" className="w-5 h-5" />
+                {t("myWallet.home")}
+              </p>
+            </Link>
             |
-            <div className="flex flex-row border p-2 rounded-xl items-center">
-              <img src={logout} alt="" className=" w-5 h-5" />
-              <p>Logout</p>
+            <img src={notification} alt="" className="w-5 h-5" />
+            |
+            <ChangeLanguage />|
+            <div
+              className="flex flex-row border  border-[#FF9671] p-2 rounded-xl items-center cursor-pointer hover:bg-[#FF9671]"
+              onClick={click}
+            >
+              <img src={logouticon} alt="" className=" w-5 h-5" />
+              <p> {t("myWallet.logout")}</p>
             </div>
           </div>
         </div>
       </div>
-      <div className="lg:mx-20 ">
-        <div className="flex flex-row justify-between items-center py-5">
-          <div>
-            <p>Hi, Paci</p>
-            <p className="font-bold text-lg">My Babi Wallet</p>
-          </div>
-
-          <div className="flex flex-row items-center gap-2">
-            <img src={copy} alt="" className="w-12 h-12" />
+      {loading ? (
+        <Skeleton />
+      ) : (
+        <div className=" mx-2 lg:mx-20 ">
+          <div className="flex  lg:flex-row justify-between items-start lg:items-center py-5">
+            <div>
+              <p>
+                {" "}
+                {t("myWallet.hi")}, {user?.lastName ? user.lastName : user?.firstName}
+              </p>
+              <p className="font-bold text-lg"> {t("myWallet.my_babi_wallet")}</p>
+            </div>
             <div className="">
-              <p className="font-bold">Invite friends</p>
-              <div className="flex flex-row gap-2 items-center border rounded-2xl p-1">
-                <p className="text-sm">XYZTVB</p>
-                <button className="bg-[#FF9671] px-2 rounded-xl text-white flex items-center gap-1">
-                  <img src={copycode} alt="" className="w-3 h-3" />
-                  Copy code
-                </button>
+              <CopyTextComponent />
+            </div>
+          </div>
+          <hr />
+          <div className="my-3  flex flex-col lg:flex-row gap-3 cursor-default">
+            <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#FDF1E2] hover:shadow">
+              <img src={wallet} alt="" className="w-12 h-12" />
+              <div>
+                <p>{t("myWallet.balance")}: 1000 Rf</p>
+                <div className="flex flex-row gap-1">
+                  <button className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1">
+                  {t("myWallet.add_funds")}
+                  </button>
+                  <button className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1">
+                  {t("myWallet.withdraw")}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#E8F7E8] hover:shadow">
+              <img src={token} alt="" className="w-12 h-12" />
+              <div>
+                <p>{t("myWallet.my_tokens")}</p>
+                <div className="flex flex-row gap-1">
+                  <p>{t("myWallet.to_use_for_rewards")}</p>
+                  <button
+                    onClick={handleOpenModel}
+                    className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1"
+                  >
+                    {t("myWallet.view")}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#DFF3F9] hover:shadow">
+              <img src={profile} alt="" className="w-12 h-12" />
+              <div>
+                <p>{t("myWallet.personal_information")}</p>
+                <div className="flex flex-row gap-1">
+                  <p>{t("myWallet.update_personal_information")}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr />
-        <div className="my-3  flex flex-col lg:flex-row gap-3">
-          <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#FDF1E2]">
-            <img src={wallet} alt="" className="w-12 h-12" />
-            <div>
-              <p>Balance: 1000 Rf</p>
-              <div className="flex flex-row gap-1">
-                <button className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1">
-                  Add Funds
-                </button>
-                <button className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1">
-                  Withdraw
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#E8F7E8]">
-            <img src={token} alt="" className="w-12 h-12" />
-            <div>
-              <p>My Tokens</p>
-              <div className="flex flex-row gap-1">
-                <p>To use for rewards</p>
-                <button className="bg-[#FF9671] px-2 rounded text-white flex items-center gap-1">
-                  View
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-row  lg:w-fit p-1 rounded bg-[#DFF3F9]">
-            <img src={profile} alt="" className="w-12 h-12" />
-            <div>
-              <p>Personal Information</p>
-              <div className="flex flex-row gap-1">
-                <p>Update your personal information</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* game details */}
-        <div className="">
-          <p className="font-bold">Game Details</p>
-          <div className="flex flex-col lg:flex-row">
-            <div className="w-full lg:w-1/2 ">
-              selected product
-              <div key="static-key" className="w-full lg:w-64 p-1 hover:shadow-2xl rounded-lg">
-                <div>
-                  <div className="flex flex-row justify-between">
-                    {/* <p className="bg-[#222e38] flex flex-row px-2 gap-2 rounded-3xl items-center">
-                      <img src="price-icon-placeholder.png" alt="Price Icon" className="w-5 h-5" />
-                      200K <span>Price</span>
-                    </p> */}
-                  </div>
-                  <div className="flex flex-row items-center gap-4 text-black">
-                    <img
-                      src="product-image-placeholder.png"
-                      alt="Product Logo"
-                      className="w-40 h-40"
-                    />
-                    <div className="w-full">
-                      <p>Static Product Name</p>
-                      <p className="text-sm text-gray-700">This is a static product description.</p>
+          {isModalVisible && (
+            <TokenModel onClose={closeModal}>
+              <MyTokens />
+            </TokenModel>
+          )}
+          {/* game details */}
+          <div className="">
+            <p className="font-bold text-2xl">{t("myWallet.game_details")}</p>
+            <div className="flex flex-col lg:flex-row">
+              {productId ? (
+                <>
+                  <div className="w-full lg:w-1/2 ">
+                    <div className="flex justify-between font-semibold">
+                      <p>{t("myWallet.selected_product")}</p>
+                      <p
+                        onClick={handleHomeRedirect}
+                        className="text-green-500 mr-3 hover:text-inherit cursor-pointer"
+                      >
+                        {t("myWallet.select_different_product")}
+                      </p>
+                    </div>
+
+                    <div className="w-full  p-1  rounded-lg">
+                      <div className=" w-full">
+                        <div className="flex flex-row justify-between"></div>
+                        <div className="flex flex-row items-center gap-4 text-black  w-full">
+                          <img
+                            src={info?.picture ? info.picture : logo}
+                            alt="Product Logo"
+                            className="w-40 h-40"
+                          />
+                          <div className="w-full ">
+                            <p>{info?.name}</p>
+                            <p className="text-sm text-gray-700">{info?.description}</p>
+                            <p className="bg-[#222e38] flex flex-row px-2 gap-2 text-white p-2 rounded-lg items-center">
+                              <img src={price} alt="" className="w-5 h-5" />
+                              {info?.playAmount} <span>{t("myWallet.price")}</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  {/* play component */}
+                  <Play />
+                </>
+              ) : (
+                <div className=" text-center border flex gap-2 justify-center items-center  w-full h-24">
+                  <Tooltip message={t("myWallet.select_product_you_need_to_play")}>
+                    <div
+                      onClick={handleHomeRedirect}
+                      className="text-grey flex gap-2 justify-center items-center cursor-pointer"
+                    >
+                      {t("myWallet.select_product")}
+                      <img src={add} alt="" className="w-5 h-5" />{" "}
+                    </div>
+                  </Tooltip>
                 </div>
-              </div>
-            </div>
-            <div className="w-full lg:w-1/2 border-l border-r">
-              <p className="bg-[#FF9671] p-2 text-center">
-                Buy multiple tickets and enjoy a 5% discount
-              </p>
-              <p className="text-center">Number of Tickets</p>
-              <div className="mx-20">
-                <div className="flex flex-row items-center justify-evenly py-2">
-                  <img src={minus} alt="" className="w-7 h-7" />
-                  <p>3</p>
-                  <img src={add} alt="" className="w-7 h-7" />
-                </div>
-                <div>
-                  <div className="flex flex-row justify-between py-2">
-                    <p>Total Amount</p>
-                    <p>200 CFA</p>
-                  </div>
-                  <div className="flex flex-row justify-between py-2">
-                    <p>Discount</p>
-                    <p>20 CFA</p>
-                  </div>
-                  <div className="flex flex-row justify-between py-2">
-                    <p>Amount to Pay</p>
-                    <p>220 CFA</p>
-                  </div>
-                </div>
-                
-              </div>
-              <button className="bg-[#FF9671] p-2 w-full">Pay</button>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      )}
       <ToastContainer />
     </div>
   );

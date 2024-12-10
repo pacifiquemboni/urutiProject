@@ -1,7 +1,5 @@
-// import Globe from "../../assets/newassets/globe.png";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useCallback, useLayoutEffect, useState } from "react";
-// import OnlineCasinos from "./models/onlineCasino";
 import logo from "../../assets/logo.png";
 import homeIcon from "../../assets/home.svg";
 import gameIcon from "../../assets/gaming.svg";
@@ -16,7 +14,7 @@ import { Popover } from "react-tiny-popover";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
 import { Link } from "react-router-dom";
-import { My_Wallet } from "@/helpers/routes";
+import { Client_Login, Client_Signup, My_Wallet } from "@/helpers/routes";
 
 const NEWHEADER = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +25,6 @@ const NEWHEADER = () => {
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
-  // const [onlineCasinoOpen, setOnlineCasinoOpen] = useState(false);
   const selected = i18n.language;
 
   const languages = [
@@ -39,7 +36,7 @@ const NEWHEADER = () => {
   const changeLanguage = useCallback(
     (lang: string) => {
       i18n.changeLanguage(lang);
-      setIsPopoverOpen(false); // Close the popover after selecting a language
+      setIsPopoverOpen(false);
     },
     [i18n],
   );
@@ -88,27 +85,30 @@ const NEWHEADER = () => {
             }
           >
             <button onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-             
-                <IconWorld className="text-white text-2xl" />
-             
+              <IconWorld className="text-white text-2xl" />
             </button>
           </Popover>
-          {!user ? (
-            <div className="flex flex-row">
-              <div className="w-fit h-10 border border-[#4a5b68] flex flex-col bg-[#19232c] justify-center">
-                <h1 className="font-bold text-white text-center p-2">{t("navbar.login")}</h1>
-              </div>
-              <div className=" hidden lg:flex flex-col justify-center w-20 h-10 border border-[#4a5b68] bg-[#19232c]">
-                <h1 className="font-bold text-white text-center">{t("navbar.signup")}</h1>
-              </div>
-            </div>
-          ) : (
+          {user ? (
             <Link to={My_Wallet}>
               <div className="flex flex-row gap-2 bg-white p-2 items-center rounded">
                 <img src={wallet} alt="" className="w-6 h-6" />
                 <p className="font-semibold">Babi Wallet</p>
               </div>
             </Link>
+          ) : (
+            <div className="flex flex-row">
+              <Link to={Client_Login}>
+                <div className="w-fit h-10 border border-[#4a5b68] flex flex-col bg-[#19232c] justify-center">
+                  <h1 className="font-bold text-white text-center p-2">{t("navbar.login")}</h1>
+                </div>
+              </Link>
+
+              <Link to={Client_Signup}>
+                <div className=" hidden lg:flex flex-col justify-center w-20 h-10 border border-[#4a5b68] bg-[#19232c]">
+                  <h1 className="font-bold text-white text-center">{t("navbar.signup")}</h1>
+                </div>
+              </Link>
+            </div>
           )}
         </div>
       </div>
@@ -117,10 +117,12 @@ const NEWHEADER = () => {
       <div className="hidden lg:block mt-1">
         <nav className="flex mx-20 text-white font-bold gap-5 justify-center items-center h-12">
           <div className="border-b-4 border-[#FF9671] cursor-pointer">
-            <p className="p-1 flex flex-row gap-2">
-              <img src={homeIcon} alt="" className="w-5 h-5" />
-              {t("navbar.home")}
-            </p>
+            <Link to={"/"}>
+              <p className="p-1 flex flex-row gap-2">
+                <img src={homeIcon} alt="" className="w-5 h-5" />
+                {t("navbar.home")}
+              </p>
+            </Link>
           </div>
           <div className="hover:border-b-4 border-[#FF9671] cursor-pointer">
             <p className="p-1 flex flex-row gap-2">

@@ -11,6 +11,7 @@ const initialState = {
   error: undefined as string | any,
   loading: false,
   fetchTimes: 0,
+  success: false,
   login: {
     status: "success" as statusType,
     error: undefined as string | any,
@@ -32,6 +33,7 @@ export const UserSlice = createSlice({
   reducers: {
     logout: (state) => {
       Cookies.remove("access_token");
+      localStorage.removeItem("productId")
 
       state.user = null;
       state.access_token = undefined;
@@ -113,7 +115,7 @@ export const UserSlice = createSlice({
       .addCase(SignupClientThunk.fulfilled, (state) => {
         state.login.status = "success";
         state.loading = false;
-
+        state.success = true;
         state.login.error = undefined;
       })
       //get user
