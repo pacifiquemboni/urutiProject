@@ -11,14 +11,30 @@ export const GetProductsThunk = createAsyncThunk(
       });
 
       if (res?.data?.error) return rejectWithValue(res?.data?.error);
-      console.log("products",res.data);
+      // console.log("products",res.data);
       return res.data;
     } catch (error) {
       return rejectWithValue(error);
     }
   },
 );
+// Define the thunk to get product by id
+export const GetProductByIdThunk = createAsyncThunk(
+  "product/getById",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(`/v1/product/${id}`, {
+        headers: { "Content-Type": "application/json" },
+      });
 
+      if (res?.data?.error) return rejectWithValue(res?.data?.error);
+      // console.log("Product by id data:", res.data);
+      return res.data; // Return the product data
+    } catch (error) {
+      return rejectWithValue(error); // Handle errors
+    }
+  }
+);
 export const GetAllProductsThunk = createAsyncThunk(
   "products_all",
   async (data: any = {}, { rejectWithValue }) => {
@@ -29,7 +45,7 @@ export const GetAllProductsThunk = createAsyncThunk(
       });
 
       if (res?.data?.error) return rejectWithValue(res?.data?.error);
-      console.log("all products:", res.data)
+      // console.log("all products:", res.data)
       return res.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -50,7 +66,7 @@ export const GetAllProductsByCategoryIdThunk = createAsyncThunk(
         return rejectWithValue(res.data.error); // Handle API-level errors
       }
 
-      console.log("Fetched Products:", res.data);
+      // console.log("Fetched Products:", res.data);
       return res.data; // Assume res.data contains the list of products
     } catch (error: any) {
       console.error("Fetch Error:", error.message || error);
@@ -68,7 +84,7 @@ export const AddProductsThunk = createAsyncThunk(
       });
 
       if (res?.data?.error) return rejectWithValue(res?.data?.error);
-      console.log("added products:", res.data)
+      // console.log("added products:", res.data)
 
       return res.data;
     } catch (error) {
@@ -86,7 +102,7 @@ export const EditProductsThunk = createAsyncThunk(
       });
 
       if (res?.data?.error) return rejectWithValue(res?.data?.error);
-      console.log("edited products:", res.data)
+      // console.log("edited products:", res.data)
 
       return res.data;
     } catch (error) {

@@ -6,10 +6,13 @@ import { GetCategoriesThunk } from "@/redux/features/actions/radios";
 import CategoryProducts from "./categoryProducts";
 import categoryImage from "../../assets/categoryIcon.png"
 import Tooltip from "./ToolKit";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
+
 
 const AboutRight = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
   // const [isExpanded, setIsExpanded] = useState(false);
