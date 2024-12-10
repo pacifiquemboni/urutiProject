@@ -10,7 +10,9 @@ import NEWHEADER from "./header";
 const NewHome = () => {
   return (
     <div className="">
-      <NEWHEADER />
+      <div className="sticky top-0 z-10 bg-white shadow-md">
+        <NEWHEADER />
+      </div>
       <DEMO />
       <About />
       {/* <CategoryProducts /> */}

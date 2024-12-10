@@ -10,6 +10,7 @@ import draw from "./features/slices/draw";
 import contacts from "./features/slices/contacts";
 import payments from "./features/slices/payments";
 import radio from "./features/slices/radio";
+import player from "./features/slices/player"
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     products,
     draw,
     contacts,
+    player
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

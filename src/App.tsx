@@ -28,7 +28,7 @@ import {
 import Loader from "./components/etc/loader";
 import ClientLogin from "./components/newHome/Auth/clientLogin";
 import ClientSignup from "./components/newHome/Auth/clientSignup";
-import MyWallet from "./components/newHome/MyWallet/MyWallet";
+import MyWallet from "./components/newHome/MyProfile";
 
 const AuthLayout = lazy(() => import("./components/layout/default/auth"));
 const PageLayout = lazy(() => import("./components/layout/default"));
