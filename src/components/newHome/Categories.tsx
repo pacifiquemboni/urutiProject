@@ -1,26 +1,29 @@
 import { useEffect, useState } from "react";
-import arrow from "../../assets/newassets/arrow-right-2817.png";
 import CategoryModal from "./modal/modal";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { GetCategoriesThunk } from "@/redux/features/actions/radios";
 import CategoryProducts from "./categoryProducts";
 import categoryImage from "../../assets/categoryIcon.png"
 import Tooltip from "./ToolKit";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
+import AllProducts from "./AllProducts";
+
 
 const AboutRight = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
+
   const [selectedItemId, setSelectedItemId] = useState<string | null>(null);
   const [selectedItemName, setSelectedItemName] = useState<string | null>(null);
   // const [isExpanded, setIsExpanded] = useState(false);
-  const maxLength = 30;
+  // const maxLength = 30;
 
  
   const { list } = useAppSelector((s) => s.radio);
   useEffect(() => {
     dispatch(GetCategoriesThunk(10));
   }, [dispatch]);
-  console.log("categories now", list);
+  // console.log("categories now", list);
   // console.log("categories info", info);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -69,7 +72,7 @@ const AboutRight = () => {
                   <p className="text-lg">
                     {t("category.products")}: ({item.product.length})
                   </p>
-                  <p className="text-sm">
+                  {/* <p className="text-sm">
                     {t("category.description")}:
                     { item.description ? `${item.description.slice(0, maxLength)}...`: 'no description yet'}
                     <span
@@ -79,7 +82,7 @@ const AboutRight = () => {
                     >
                       read more
                     </span>
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -98,31 +101,7 @@ const AboutRight = () => {
         )}
       </div>
 
-      <h1 className="text-3xl font-bold">About game provider</h1>
-      <div className="w-full border border-[#4a5b68] flex flex-col lg:flex-row justify-between h-56">
-        <div className="flex flex-1 bg-[#222e38] items-center justify-center">
-          <p>woohoo</p>
-        </div>
-        <div className=" flex flex-1  items-center justify-center">
-          <p className="text-3xl font-semibold">WOOHOO GAMES</p>
-        </div>
-        <div className="flex flex-col flex-1 justify-center  p-2 gap-3">
-          <div className="flex justify-between p-3 border border-[#4a5b68]">
-            <div>
-              <p>Games(45)</p>
-            </div>
-
-            <img src={arrow} alt="" />
-          </div>
-          <div className="flex justify-between p-3 border border-[#4a5b68]">
-            <div>
-              <p>Real-money casinos (45)</p>
-            </div>
-
-            <img src={arrow} alt="" />
-          </div>
-        </div>
-      </div>
+      <AllProducts />
     </div>
   );
 };
