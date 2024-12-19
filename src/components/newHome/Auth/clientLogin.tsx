@@ -1,11 +1,11 @@
 import { useState } from "react";
-import NEWHEADER from "../header";
-import NewFooter from "../NewFooter";
-import bgImage from "../../../assets/newassets/144.jpg";
+// import NEWHEADER from "../header";
+// import NewFooter from "../NewFooter";
+// import bgImage from "../../../assets/newassets/144.jpg";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { LoginClientThunk } from "@/redux/features/actions/users/me";
 import { toast } from "react-toastify";
-import { Client_Signup, My_Wallet } from "@/helpers/routes";
+import { Client_Signup } from "@/helpers/routes";
 import { Link } from "react-router-dom";
 
 const ClientLogin = () => {
@@ -14,19 +14,26 @@ const ClientLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
 
-  const { user, loading } = useAppSelector((state) => state.user);
+  const { loading } = useAppSelector((state) => state.user);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!username || !password) {
-      setError("Username and password are required.");
+      // setError("Username and password are required.");
+      const toastId = toast.loading("Logging in...");
+      toast.update(toastId, {
+        render: `Username and password are required.`,
+        type: "error",
+        isLoading: false,
+        autoClose: 5000,
+      });
       return;
     }
 
-    setError(null); // Clear any previous errors
+    // setError(null); // Clear any previous errors
 
     dispatch(LoginClientThunk({ username, password }))
       .unwrap()
@@ -38,36 +45,43 @@ const ClientLogin = () => {
           isLoading: false,
           autoClose: 5000,
         });
-        window.location.assign(My_Wallet);
+        // window.location.assign(My_Wallet);
         console.log("Login Successful:", response);
       })
       .catch((err) => {
-        setError(err || "An error occurred during login.");
+        const errorMessage = err?.response?.data?.message || "An error occurred during login.";
+        // setError(errorMessage || "An error occurred during login.");
+        const toastId = toast.loading("Logging in...");
+        toast.update(toastId, {
+          render: `${errorMessage}`,
+          type: "error",
+          isLoading: false,
+          autoClose: 5000,
+        });
+        // console.log("errore",errorMessage);
       });
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  console.log(error);
-  
-  console.log("User Info:", user);
+  // console.log(error);
+
+  // console.log("User Info:", user);
 
   return (
     <>
-      <NEWHEADER />
+      {/* <div className="sticky top-0 z-10 bg-white shadow-md">
+        <NEWHEADER />
+      </div> */}
       <div
-        className=" flex items-center justify-end h-144"
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="flex items-center justify-center"
       >
-        <div className="lg:mx-20">
-          <div className="w-screen lg:w-96 h-128 lg:h-96 bg-white flex flex-col items-center lg:justify-around justify-center rounded-lg">
+        <div className="lg:mx-20 py-0 md:py-3">
+          <div className="w-screen lg:w-96 h-128 lg:h-96 bg-white flex flex-col items-center  justify-center rounded-lg">
             <h1 className="font-bold text-xl">LOGIN</h1>
-            <p className="font-bold text-sm">Fill In Your Credentials</p>
+            <p className="font-bold text-sm p-2">Fill In Your Credentials</p>
+            {/* {error && <div className="text-red-500">{error}</div>} */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-4/5">
               {/* Username Input */}
               <input
@@ -107,21 +121,23 @@ const ClientLogin = () => {
                 type="submit"
                 className="border p-2 bg-[#FF9671] rounded text-white font-bold"
               >
-            {loading ? 'Loaging in...' : 'Login'}
+                {loading ? "Loaging in..." : "Login"}
               </button>
 
               {/* Signup Link */}
               <div>
                 <p className="text-sm text-center">
-                  Don't have an account? <span className="text-green-500 font-semibold"><Link to={Client_Signup}>Sign up</Link></span>
-                  
+                  Don't have an account?{" "}
+                  <span className="text-green-500 font-semibold">
+                    <Link to={Client_Signup}>Sign up</Link>
+                  </span>
                 </p>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <NewFooter />
+      {/* <NewFooter /> */}
     </>
   );
 };
