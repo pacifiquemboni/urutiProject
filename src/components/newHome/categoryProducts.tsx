@@ -4,10 +4,9 @@ import { GetAllProductsByCategoryIdThunk } from "@/redux/features/actions/produc
 import price from "../../assets/price.svg";
 import product from "../../assets/product.svg";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
-import { Link } from "react-router-dom";
-import { My_Wallet } from "@/helpers/routes";
 import CategoryModal from "./modal/modal";
 import Auth from "./Auth";
+import Play from "./MyProfile/play";
 
 interface CategoryProductsProps {
   selectedItemId: string;
@@ -22,6 +21,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
   const { list = [], status } = useAppSelector((s) => s.products) || {};
   const { user, access_token } = useAppSelector((s) => s.user);
   const [loginModel, setLoginModel] = useState(false);
+  const [openPlayModel, setOpenPlayModel] = useState(false);
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
@@ -36,6 +36,19 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
   const closeModal = () => {
     setLoginModel(false);
   };
+   const togglePlayModel = () => {
+    dispatch(GetAllProductsByCategoryIdThunk({ categoryId: selectedItemId }));
+
+      setOpenPlayModel(true);
+  
+    };
+    
+    const closePlayModal = () => {
+      setOpenPlayModel(false);
+      dispatch(GetAllProductsByCategoryIdThunk({ categoryId: selectedItemId }));
+
+  
+    };
   const { success } = useAppSelector((s) => s.user);
 
   useEffect(()=>{
@@ -111,10 +124,15 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
                       // </Link>
 
                     ) : (
-                      <Link to={My_Wallet} onClick={() => localStorage.setItem("productId", item.id)}>
-
-                        <button className="bg-[#FF9671] px-2 rounded text-white">Play</button>
-                      </Link>
+                      <button
+                      onClick={() => {
+                        localStorage.setItem("productId", item.id);
+                        togglePlayModel();
+                      }}
+                        className="bg-[#FF9671] px-2 rounded text-white"
+                      >
+                        Play
+                      </button>
                     )}
 
                   </div>
@@ -139,6 +157,9 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
       )}
       {loginModel && (
         <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+      )}
+      {openPlayModel && (
+        <CategoryModal children={<Play />} onClose={closePlayModal}></CategoryModal>
       )}
     </div>
 
