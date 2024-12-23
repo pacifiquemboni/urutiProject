@@ -1,21 +1,18 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import price from "../../assets/price.svg";
 import product from "../../assets/product.svg";
-
 import { useEffect, useLayoutEffect, useState } from "react";
-import { ClientGetAllProductsThunk } from "@/redux/features/actions/products";
-
-// import { useTranslation } from "react-i18next";
+import {  GetProductsThunk } from "@/redux/features/actions/products";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
-// import { Link } from "react-router-dom";
-// import { Client_Login, My_Wallet } from "@/helpers/routes";
 import CategoryModal from "./modal/modal";
-import ClientLogin from "./Auth/clientLogin";
+import Auth from "./Auth";
+import Play from "./MyProfile/play";
 
 const AllProducts = () => {
   const dispatch = useAppDispatch();
-  // const { t } = useTranslation();
-  const [openLoginModel, setOpenLoginModel] = useState(false);
+  const [openAuthModel, setOpenAuthModel] = useState(false);
+  const [openPlayModel, setOpenPlayModel] = useState(false);
+
   const { success } = useAppSelector((s) => s.user);
 
   const { list, info } = useAppSelector((s) => s.products);
@@ -23,27 +20,33 @@ const AllProducts = () => {
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
-  useEffect(() => {
-    dispatch(ClientGetAllProductsThunk(10));
-  }, [dispatch]);
+  useLayoutEffect(() => {
+      dispatch(GetProductsThunk({ pageSize: 1000 }));
+    }, [dispatch]);
   console.log(" all products now", info);
   console.log(" all products list now", list);
-  const toggleLoginModel = () => {
-    setOpenLoginModel(true);
+  const toggleAuthModel = () => {
+    setOpenAuthModel(true);
   };
   const closeModal = () => {
-    setOpenLoginModel(false);
+    setOpenAuthModel(false);
+  };
+  const togglePlayModel = () => {
+    setOpenPlayModel(true);
+  };
+  const closePlayModal = () => {
+    setOpenPlayModel(false);
   };
   useEffect(() => {
     if (success) {
-      setOpenLoginModel(false)
+      setOpenAuthModel(false)
     }
   }, [success])
 
   return (
     <>
       <h1 className="text-3xl font-bold">All Products</h1>
-      <div className="lg:my-5 flex flex-row justify-between flex-wrap h-128 lg:h-auto overflow-scroll lg:overflow-hidden">
+      <div className="lg:my-5 flex flex-row justify-between lg:justify-stretch gap-1 flex-wrap h-128 lg:h-auto overflow-scroll lg:overflow-hidden">
         {list.length > 0 ? (
           list.map((item, index) => (
             <div
@@ -68,14 +71,14 @@ const AllProducts = () => {
                     <br />
                     {!user ? (
                       <button
-                        onClick={toggleLoginModel}
+                        onClick={toggleAuthModel }
                         className="bg-[#FF9671] px-2 rounded text-white absolute bottom-1 right-2"
                       >
                         Play
                       </button>
                     ) : (
                       <button
-                        onClick={toggleLoginModel}
+                        onClick={togglePlayModel}
                         className="bg-[#FF9671] px-2 rounded text-white absolute bottom-1 right-2"
                       >
                         Play
@@ -84,15 +87,19 @@ const AllProducts = () => {
                   </div>
                 </div>
               </div>
-              {openLoginModel && (
-                <CategoryModal children={<ClientLogin />} onClose={closeModal}></CategoryModal>
-              )}
+
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500">No products available for this category.</p>
+          <p className="text-center text-gray-500">No products available At the moment.</p>
         )}
       </div>
+      {openAuthModel && (
+        <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+      )}
+      {openPlayModel && (
+        <CategoryModal children={<Play />} onClose={closePlayModal}></CategoryModal>
+      )}
     </>
   );
 };

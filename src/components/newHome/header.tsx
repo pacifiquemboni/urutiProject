@@ -16,13 +16,14 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
 import { Link } from "react-router-dom";
 import ChangeLanguage from "./ChangeLanguage";
-import ClientLogin from "./Auth/clientLogin";
+// import ClientLogin from "./Auth/clientLogin";
 import CategoryModal from "./modal/modal";
 import { logout } from "@/redux/features/slices/player";
 import arrowDown from "../../assets/arrowdown.svg"
 import MyWalletModel from "./modal/myWalletModel";
 import MyWallet from "./MyProfile";
-import ClientSignup from "./Auth/clientSignup";
+// import ClientSignup from "./Auth/clientSignup";
+import Auth from "./Auth";
 
 const NEWHEADER = () => {
   const dispatch = useAppDispatch();
@@ -94,7 +95,7 @@ console.log("user data", user);
 
           {user ? (
             <>
-              <div className="flex flex-row justify-between items-center text-white  hover:shadow-xl border-[#4a5b68] rounded-3xl bg-[#19232c]/50 cursor-default gap-2 p-2  w-40 text-sm h-10">
+              <div className="flex flex-row justify-between items-center text-white  hover:shadow-xl border border-[#4a5b68] rounded-3xl cursor-default gap-2 p-2  w-40 text-sm h-10">
                 <div className=" w-full text-sm p-1">
                   <p className="font-bold">balance:</p>
                   <div className="flex justify-between items-center w-full ">
@@ -106,7 +107,7 @@ console.log("user data", user);
                   <p>Deposit</p>
                 </div>
               </div>
-              <div className="flex flex-row justify-between cursor-default hover:shadow-xl border-[#4a5b68] bg-[#19232c]/50 rounded-3xl p-2 h-10 w-40">
+              <div className="flex flex-row justify-between cursor-default hover:shadow-xl border border-[#4a5b68] items-center rounded-3xl p-2 h-10 w-40">
                 <div onClick={togglewalletModel}>
                   <img src={profile} alt="" className="w-5 h-5 cursor-pointer" />
                 </div>
@@ -131,7 +132,7 @@ console.log("user data", user);
                 <h1 className="font-bold text-white text-center p-2">{t("navbar.login")}</h1>
               </div>
               {loginModel && (
-                <CategoryModal children={<ClientLogin />} onClose={closeModal}></CategoryModal>
+                <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
               )}
 
              
@@ -140,7 +141,7 @@ console.log("user data", user);
                 </div>
              
               {signupModel && (
-                <CategoryModal children={<ClientSignup />} onClose={closeModal}></CategoryModal>
+                <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
               )}
             </div>
           )}

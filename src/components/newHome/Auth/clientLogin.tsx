@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
-// import NEWHEADER from "../header";
-// import NewFooter from "../NewFooter";
-// import bgImage from "../../../assets/newassets/144.jpg";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { LoginClientThunk } from "@/redux/features/actions/users/me";
 import { toast } from "react-toastify";
-import { Client_Signup } from "@/helpers/routes";
-import { Link } from "react-router-dom";
-import ClientSignup from "./clientSignup";
 
 const ClientLogin = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +12,6 @@ const ClientLogin = () => {
   // const [error, setError] = useState<string | null>(null);
 
   const { loading } = useAppSelector((state) => state.user);
-  const { success } = useAppSelector((s) => s.user);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +39,7 @@ const ClientLogin = () => {
           type: "success",
           isLoading: false,
           autoClose: 5000,
+          closeButton:true,
         });
         // window.location.assign(My_Wallet);
         console.log("Login Successful:", response);
@@ -59,6 +53,7 @@ const ClientLogin = () => {
           type: "error",
           isLoading: false,
           autoClose: 5000,
+          closeButton: true,
         });
         // console.log("errore",errorMessage);
       });
@@ -67,39 +62,16 @@ const ClientLogin = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-  const [isLogin, setLogin] = useState(true)
-  const [isSignup, setSignup] = useState(false)
-
-
-  const OpenLogin = (() => {
-    setLogin(true)
-    setSignup(false)
-  })
-  const OpenSignup = (() => {
-    setLogin(false)
-    setSignup(true)
-  })
-  useEffect(() => {
-    if (success) {
-      setSignup(false)
-    }
-  }, [success])
+  
   return (
     <>
-      <div className="text-black flex">
-        <div onClick={OpenLogin} className={`p-3 ${isLogin ? "bg-[#19232c] text-white" : ""}`}>LOGIN</div>
-        <div onClick={OpenSignup} className={`p-3 ${isSignup ? "bg-[#19232c] text-white" : ""}`}>SIGNUP</div>
-      </div>
-      <hr />
-      {
-        isLogin && (
           <div
             className="flex items-center justify-center"
           >
             <div className=" py-0 ">
-              <div className=" w-screen lg:w-96 h-128 lg:h-96 bg-white flex flex-col items-center  justify-center rounded-lg">
+              <div className=" w-screen lg:w-96 h-128 lg:h-96  flex flex-col items-center  justify-center ">
 
-                <p className="font-bold text-sm p-2">Fill In Your Credentials</p>
+                <p className="font-bold text-sm p-2 text-[#19232c]">Fill In Your Credentials</p>
                 {/* {error && <div className="text-red-500">{error}</div>} */}
                 <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-4/5">
                   {/* Username Input */}
@@ -143,26 +115,13 @@ const ClientLogin = () => {
                     {loading ? "Loaging in..." : "Login"}
                   </button>
 
-                  {/* Signup Link */}
-                  <div>
-                    <p className="text-sm text-center">
-                      Don't have an account?{" "}
-                      <span className="text-green-500 font-semibold">
-                        <Link to={Client_Signup}>Sign up</Link>
-                      </span>
-                    </p>
-                  </div>
+                  
                 </form>
               </div>
             </div>
           </div>
-        )
-      }
-      {
-        isSignup && (
-          <ClientSignup />
-        )
-      }
+        
+      
       {/* <NewFooter /> */}
     </>
   );
