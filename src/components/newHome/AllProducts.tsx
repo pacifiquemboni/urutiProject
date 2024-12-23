@@ -15,7 +15,7 @@ const AllProducts = () => {
 
   const { success } = useAppSelector((s) => s.user);
 
-  const { list, info } = useAppSelector((s) => s.products);
+  const { list } = useAppSelector((s) => s.products);
   const { user, access_token } = useAppSelector((s) => s.user);
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
@@ -23,8 +23,8 @@ const AllProducts = () => {
   useLayoutEffect(() => {
       dispatch(GetProductsThunk({ pageSize: 1000 }));
     }, [dispatch]);
-  console.log(" all products now", info);
-  console.log(" all products list now", list);
+  // console.log(" all products now", info);
+  // console.log(" all products list now", list);
   const toggleAuthModel = () => {
     setOpenAuthModel(true);
   };
@@ -33,9 +33,14 @@ const AllProducts = () => {
   };
   const togglePlayModel = () => {
     setOpenPlayModel(true);
+    dispatch(GetProductsThunk({ pageSize: 1000 }));
+
   };
+  
   const closePlayModal = () => {
     setOpenPlayModel(false);
+    dispatch(GetProductsThunk({ pageSize: 1000 }));
+
   };
   useEffect(() => {
     if (success) {
@@ -47,7 +52,7 @@ const AllProducts = () => {
     <>
       <h1 className="text-3xl font-bold">All Products</h1>
       <div className="lg:my-5 flex flex-row justify-between lg:justify-stretch gap-1 flex-wrap h-128 lg:h-auto overflow-scroll lg:overflow-hidden">
-        {list.length > 0 ? (
+        {list?.length > 0 ? (
           list.map((item, index) => (
             <div
               key={index}
@@ -70,15 +75,23 @@ const AllProducts = () => {
                     <p>{item.name}</p>
                     <br />
                     {!user ? (
-                      <button
-                        onClick={toggleAuthModel }
+                      
+                         <button
+                        onClick={() => {
+                          localStorage.setItem("productId", item.id);
+                          toggleAuthModel();
+                        }}
                         className="bg-[#FF9671] px-2 rounded text-white absolute bottom-1 right-2"
                       >
                         Play
                       </button>
+                      
                     ) : (
                       <button
-                        onClick={togglePlayModel}
+                      onClick={() => {
+                        localStorage.setItem("productId", item.id);
+                        togglePlayModel();
+                      }}
                         className="bg-[#FF9671] px-2 rounded text-white absolute bottom-1 right-2"
                       >
                         Play

@@ -35,18 +35,18 @@ const CategoryModal: React.FC<ModalProps> = ({ children, onClose }) => {
       >
         <div
           onClick={handleClose}
-          className="hidden lg:block absolute top-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
+          className=" lg:block absolute top-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
         >
           <img src={close} alt="" className="w-5 h-5" />
         </div>
         {children}
       </div>
-      <div
+      {/* <div
         onClick={handleClose}
         className="lg:hidden absolute bottom-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
       >
         <button className="shadow-lg text-red-600 border px-2 rounded">Close</button>
-      </div>
+      </div> */}
     </div>
   );
 };
