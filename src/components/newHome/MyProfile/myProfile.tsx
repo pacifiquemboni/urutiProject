@@ -10,6 +10,7 @@ import MyTokens from "./myTokens";
 import { logout } from "@/redux/features/slices/player";
 import Balance from "./balance";
 import ProfileSettings from "./profileSettings";
+import { GetUserThunk } from "@/redux/features/actions/users/me";
 
 const MyProfile = () => {
     const dispatch = useAppDispatch();
@@ -34,15 +35,16 @@ const MyProfile = () => {
         setMytokens(true);
         setSettings(false);
     };
-    const handleExpiredTokens = () => {
+    const handleSettings = () => {
         setBalance(false);
         setMytokens(false);
         setSettings(true);
+        dispatch(GetUserThunk());
     };
 
     const click = useCallback(() => {
-    dispatch(logout());
-  }, [dispatch]);
+        dispatch(logout());
+    }, [dispatch]);
     return (
         <div className=" flex flex-row justify-between  py-5">
             <div className="flex flex-col w-80  drop-shadow-xl bg-white rounded-xl text-[#19232c] h-96">
@@ -84,7 +86,7 @@ const MyProfile = () => {
 
                 </div>
                 <div
-                    onClick={handleExpiredTokens}
+                    onClick={handleSettings}
                     className={` font-bold w-full h-14 cursor-pointer hover:bg-[#19232c] hover:text-white ${isSettings ? "bg-[#19232c] text-white" : ""
                         }`}
                 >

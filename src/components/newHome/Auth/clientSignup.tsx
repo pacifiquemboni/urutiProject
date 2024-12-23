@@ -96,15 +96,11 @@ const ClientSignup = () => {
       
       <div className="flex items-center justify-center">
         <div className=" py-0">
-          <div className="w-screen lg:w-96 h-128 lg:h-fit bg-white flex flex-col items-center lg:justify-around justify-center rounded-lg py-5">
-            <h1 className="font-bold text-xl">SIGN UP</h1>
-            <p className="font-bold text-sm p-2">
-              Already have an account?{" "}
-              <span className="text-green-500 font-semibold">
-                {/* <Link to={}>Login</Link> */}
-              </span>
-            </p>
+          <div className="w-screen lg:w-96 h-128 lg:h-96  flex flex-col items-center lg:justify-around justify-center rounded-lg py-5">
+            
             <form action="" onSubmit={handleSubmit} className="flex flex-col gap-2 w-4/5">
+            <p className="font-bold text-sm text-center p-2 text-[#19232c]">Fill The Form </p>
+
               <div className="flex flex-col md:flex-row gap-2">
                 <input
                   type="text"
@@ -150,6 +146,11 @@ const ClientSignup = () => {
                 >
                   {showPassword ? "Hide" : "Show"}
                 </span>
+              </div>
+              <div className="flex items-start gap-1">
+                <input type="checkbox" />
+                <p className="text-sm text-[#19232c]">I am at least 18 years old and agree to Babi Games
+                Terms of Service and Privacy Policy.</p>
               </div>
               <button className="border p-2 bg-[#FF9671] rounded text-white font-bold">
                 {loading ? "Signing in..." : "Signup"}

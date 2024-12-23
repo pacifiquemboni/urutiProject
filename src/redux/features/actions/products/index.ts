@@ -55,11 +55,11 @@ export const GetAllProductsThunk = createAsyncThunk(
 
 export const ClientGetAllProductsThunk = createAsyncThunk(
   "products/fetchAllP",
-  async (data: any = {}, { rejectWithValue }) => {
+  async (params: any = {}, { rejectWithValue }) => {
     try {
       const res = await axios.get("/v1/product", {
         headers: { "Content-Type": "application/json" },
-        params: { ...data, pageSize: 1000 }, // Default pageSize to 1000 if not provided
+        params: { ...params, pageSize: 1000 }, // Default pageSize to 1000 if not provided
       });
 
       if (res?.data?.error) {

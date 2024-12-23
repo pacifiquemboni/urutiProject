@@ -7,6 +7,7 @@ import categoryImage from "../../assets/categoryIcon.png"
 import Tooltip from "./ToolKit";
 import { useTranslation } from "react-i18next";
 import AllProducts from "./AllProducts";
+import { GetProductsThunk } from "@/redux/features/actions/products";
 
 
 const AboutRight = () => {
@@ -18,7 +19,7 @@ const AboutRight = () => {
   // const [isExpanded, setIsExpanded] = useState(false);
   // const maxLength = 30;
 
- 
+
   const { list } = useAppSelector((s) => s.radio);
   useEffect(() => {
     dispatch(GetCategoriesThunk(10));
@@ -32,11 +33,15 @@ const AboutRight = () => {
     setSelectedItemId(id);
     setSelectedItemName(name);
     setIsModalVisible(true);
+    
   };
 
   const closeModal = () => {
     setIsModalVisible(false);
     setSelectedItemId(null);
+
+    dispatch(GetProductsThunk({ pageSize: 1000 }));
+
   };
 
   return (
@@ -54,7 +59,7 @@ const AboutRight = () => {
               className="w-full lg:w-[49%] border border-[#4a5b68] border-l-8 border-l-[#FF9671] bg-[#222e38]"
             >
               <div className="flex flex-row gap-3 p-2">
-                <img src={item.picture ? item.picture: `${categoryImage}` } alt="" className="w-16
+                <img src={item.picture ? item.picture : `${categoryImage}`} alt="" className="w-16
                  h-16
                 " />
                 <div className="flex flex-col text-left w-full">

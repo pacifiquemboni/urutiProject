@@ -44,47 +44,24 @@ const MyWallet = () => {
   const [isWithdraw, setWithdraw] = useState(false);
 
   const handleProfile = () => {
-      setProfile(true);
-      setDeposit(false);
-      setWithdraw(false);
+    setProfile(true);
+    setDeposit(false);
+    setWithdraw(false);
   };
   const handleDeposit = () => {
-      setProfile(false);
-      setDeposit(true);
-      setWithdraw(false);
+    setProfile(false);
+    setDeposit(true);
+    setWithdraw(false);
   };
   const handleWithdraw = () => {
-      setProfile(false);
-      setDeposit(false);
-      setWithdraw(true);
+    setProfile(false);
+    setDeposit(false);
+    setWithdraw(true);
   };
-  
+
   return (
     <div className="cursor-default ">
-      {/* <div className="bg-[#19232c]  text-white shadow-xl">
-        <div className="flex flex-row items-center justify-between mx-2 lg:mx-20">
-          <img src={logo} className="w-16 h-16" />
-          <div className="flex flex-row items-center gap-2">
-            <Link to={"/"}>
-              <p className="flex flex-row gap-2 hover:border-b-4 border-[#FF9671]">
-                <img src={homeIcon} alt="" className="w-5 h-5" />
-                {t("myWallet.home")}
-              </p>
-            </Link>
-            
-            <img src={notification} alt="" className="w-5 h-5" />
-            
-            <ChangeLanguage />
-            <div
-              className="flex flex-row border  border-[#FF9671] p-2 rounded-xl items-center cursor-pointer hover:bg-[#FF9671]"
-              onClick={click}
-            >
-              <img src={logouticon} alt="" className=" w-5 h-5" />
-              <p> {t("myWallet.logout")}</p>
-            </div>
-          </div>
-        </div>
-      </div> */}
+
       {loading ? (
         <Skeleton />
       ) : (
@@ -104,26 +81,35 @@ const MyWallet = () => {
                 <div className="w-fit ">
                   <img src={logo} className="w-24 h-24 border-4 rounded-full" />
                 </div>
-                <div  className="w-2/3 flex flex-col gap-2">
-                  {/* <p className="font-bold text-white">
-                    {" "}
-                    {user?.lastName}  {user?.firstName}
-                  </p> */}
+                <div className="w-2/3 flex flex-col gap-2">
+
                   <p className="text-white font-bold">
                     {user?.email}
                   </p>
-                  {/* <p className="text-white">
-                    {user?.username}
-                  </p> */}
-                  <CopyTextComponent />
+                  <div className="flex items-center">
+                    <CopyTextComponent />|
+                    {user?.emailVerified  ? (
+                      <div className="text-green-500 font-semibold">Verified</div>
+                    ) : (
+                      <div className=" font-semibold">UnVerified</div>
+                    )}
+
+                  </div>
+
                   <hr className="border-3 bg-grey" />
                   status: <br />
                   <p className="text-white">Babi Games</p>
                 </div>
 
               </div>
-              <div className="hidden md:block">
-                <ChangeLanguage />
+              <div className="flex gap-1">
+                <button className="border p-2 rounded-3xl bg-white" >
+                  Confirm e-mail
+                </button>
+                <div className="hidden md:block">
+                  <ChangeLanguage />
+                </div>
+                
               </div>
             </div>
 
@@ -131,18 +117,18 @@ const MyWallet = () => {
           <hr />
           <div className=" mx-16">
             <div className="flex">
-              <div className= {` p-3 ${isProfile ? "border-b-4 border-[#FF9671] text-[#FF9671]":""}`} onClick={handleProfile}>
+              <div className={` p-3 ${isProfile ? "border-b-4 border-[#FF9671] text-[#FF9671]" : ""}`} onClick={handleProfile}>
                 Profile
               </div>
-              <div className={` p-3 ${isDeposit ? "border-b-4 border-[#FF9671] text-[#FF9671]":""}`} onClick={handleDeposit}>
+              <div className={` p-3 ${isDeposit ? "border-b-4 border-[#FF9671] text-[#FF9671]" : ""}`} onClick={handleDeposit}>
                 Deposit
               </div>
-              <div className={` p-3 ${isWithdraw ? "border-b-4 border-[#FF9671] text-[#FF9671]":""}`} onClick={handleWithdraw}>
-               Withdraw
+              <div className={` p-3 ${isWithdraw ? "border-b-4 border-[#FF9671] text-[#FF9671]" : ""}`} onClick={handleWithdraw}>
+                Withdraw
               </div>
             </div>
             <hr />
-            
+
             {
               isProfile && <MyProfile />
             }

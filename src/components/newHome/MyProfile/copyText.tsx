@@ -37,9 +37,7 @@ const CopyTextComponent = () => {
 
   return (
     <div className="text-sm flex flex-row items-center gap-2">
-      {/* <img src={copy} alt="" className="w-12 h-12" /> */}
       <div className=" text-white">
-        {/* <p className="font-bold">{t("myWallet.inviteFriends")}</p> */}
         <div className="flex flex-row gap-2 items-center">
          Referal Code:<input type="text" value="XYZDHT45" ref={inputRef} readOnly className="w-16 bg-transparent border-none text-gray-700"
  />

@@ -1,11 +1,13 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { GetAllProductsByCategoryIdThunk } from "@/redux/features/actions/products";
 import price from "../../assets/price.svg";
 import product from "../../assets/product.svg";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
 import { Link } from "react-router-dom";
-import { Client_Login, My_Wallet } from "@/helpers/routes";
+import { My_Wallet } from "@/helpers/routes";
+import CategoryModal from "./modal/modal";
+import Auth from "./Auth";
 
 interface CategoryProductsProps {
   selectedItemId: string;
@@ -19,6 +21,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
   const dispatch = useAppDispatch();
   const { list = [], status } = useAppSelector((s) => s.products) || {};
   const { user, access_token } = useAppSelector((s) => s.user);
+  const [loginModel, setLoginModel] = useState(false);
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
@@ -27,7 +30,19 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
       dispatch(GetAllProductsByCategoryIdThunk({ categoryId: selectedItemId }));
     }
   }, [dispatch, selectedItemId]);
- 
+  const toggleLoginModel = () => {
+    setLoginModel(true);
+  };
+  const closeModal = () => {
+    setLoginModel(false);
+  };
+  const { success } = useAppSelector((s) => s.user);
+
+  useEffect(()=>{
+    if(success){
+      setLoginModel(false);
+  }
+  }, [success])
   return (
     <div className="mx-1 lg:mx-28 h-auto my-10">
       <div className="text-black flex flex-row justify-between">
@@ -87,18 +102,21 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
                     <p className="bg-[#222e38] flex flex-row px-2 gap-2 rounded-3xl items-center">
                       <img src={price} alt="" className="w-5 h-5" />
                       {item.playAmount} <span>Price</span>
-                      
+
                     </p>
                     {!user ? (
-                      <Link to={Client_Login} onClick={() => localStorage.setItem("productId", item.id)}>
-                        <button className="bg-[#FF9671] px-2 rounded text-white">Play</button>
-                      </Link>
+                      <button onClick={toggleLoginModel} className="bg-[#FF9671] px-2 rounded text-white">Play</button>
+                      // <Link to={Client_Login} onClick={() => localStorage.setItem("productId", item.id)}>
+                      //   
+                      // </Link>
+
                     ) : (
                       <Link to={My_Wallet} onClick={() => localStorage.setItem("productId", item.id)}>
-                        
+
                         <button className="bg-[#FF9671] px-2 rounded text-white">Play</button>
                       </Link>
                     )}
+
                   </div>
                   <div className="flex flex-row items-center gap-4 text-black">
                     <img
@@ -119,7 +137,11 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
           )}
         </div>
       )}
+      {loginModel && (
+        <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+      )}
     </div>
+
   );
 };
 
