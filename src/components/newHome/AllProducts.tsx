@@ -4,9 +4,9 @@ import product from "../../assets/product.svg";
 import { useEffect, useLayoutEffect, useState } from "react";
 import {  GetProductsThunk } from "@/redux/features/actions/products";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
-import CategoryModal from "./modal/modal";
 import Auth from "./Auth";
 import Play from "./MyProfile/play";
+import PlayModel from "./modal/playModel";
 
 const AllProducts = () => {
   const dispatch = useAppDispatch();
@@ -108,10 +108,10 @@ const AllProducts = () => {
         )}
       </div>
       {openAuthModel && (
-        <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+        <PlayModel children={<Auth />} onClose={closeModal}></PlayModel>
       )}
       {openPlayModel && (
-        <CategoryModal children={<Play />} onClose={closePlayModal}></CategoryModal>
+        <PlayModel children={<Play />} onClose={closePlayModal}></PlayModel>
       )}
     </>
   );

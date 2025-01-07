@@ -16,14 +16,13 @@ import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
 import { Link } from "react-router-dom";
 import ChangeLanguage from "./ChangeLanguage";
-// import ClientLogin from "./Auth/clientLogin";
-import CategoryModal from "./modal/modal";
 import { logout } from "@/redux/features/slices/player";
 import arrowDown from "../../assets/arrowdown.svg"
 import MyWalletModel from "./modal/myWalletModel";
 import MyWallet from "./MyProfile";
 // import ClientSignup from "./Auth/clientSignup";
 import Auth from "./Auth";
+import PlayModel from "./modal/playModel";
 
 const NEWHEADER = () => {
   const dispatch = useAppDispatch();
@@ -135,7 +134,7 @@ console.log("user data", user);
                 <h1 className="font-bold text-white text-center p-2">{t("navbar.login")}</h1>
               </div>
               {loginModel && (
-                <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+                <PlayModel children={<Auth />} onClose={closeModal}></PlayModel>
               )}
 
              
@@ -144,7 +143,7 @@ console.log("user data", user);
                 </div>
              
               {signupModel && (
-                <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+                <PlayModel children={<Auth />} onClose={closeModal}></PlayModel>
               )}
             </div>
           )}

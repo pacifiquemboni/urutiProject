@@ -44,7 +44,7 @@ const Play = () => {
 
 
   return (
-    <div className="flex flex-col justify-between gap-4 w-full">
+    <div className="flex flex-col gap-4 w-full h-screen lg:h-auto py-5 px-3 justify-center">
       <div className="w-full flex flex-col justify-between">
         <h1 className="text-2xl font-bold text-[#19232c]">Selected Product</h1>
         <div>
@@ -70,7 +70,7 @@ const Play = () => {
       <div className="w-full">
         <p className="bg-[#FF9671] p-2 text-center">{t("myWallet.buy_multiple_tickets_discount")}</p>
         <p className="text-center text-[#19232c]">{t("myWallet.number_of_tickets")}</p>
-        <div className="mx-10 text-[#19232c]">
+        <div className="mx-5 text-[#19232c]">
           <div className="flex flex-row items-center justify-evenly py-2">
             <img
               src={minus}
@@ -96,7 +96,7 @@ const Play = () => {
               <p>{discount > 0 ? `${discount.toFixed(2)} CFA` : "0 CFA"}</p>
             </div>
             <div className="flex flex-row justify-between py-2">
-              <p>{t("myWallet.a mount_to_pay")}</p>
+              <p>{t("myWallet.amount_to_pay")}</p>
               <p>{amountToPay.toFixed(2)} CFA</p>
             </div>
           </div>
