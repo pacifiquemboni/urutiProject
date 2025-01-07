@@ -38,7 +38,6 @@ const Auth = () => {
       {
         isLogin && (
           <div>
-
             <ClientLogin />
             <div className="flex flex-col items-center">
               <p className="text-sm flex text-center text-[#19232c]">
@@ -49,7 +48,6 @@ const Auth = () => {
               </p>
             </div>
           </div>
-
         )}
       {
         isSignup && (
