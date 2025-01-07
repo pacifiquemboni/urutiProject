@@ -24,29 +24,26 @@ const CategoryModal: React.FC<ModalProps> = ({ children, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 transition-opacity duration-300 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
-    >
-      <div
-        className={`bg-[#F1F4FC] p-5 h-screen lg:h-auto lg:mx-20 rounded-md relative w-fit transition-transform duration-300 ${
-          isVisible ? "translate-x-0" : "translate-x-full"
+      className={`fixed inset-0 bg-black bg-opacity-60 z-50 overflow-y-auto w-full transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
         }`}
-      >
+    >
+      <div className="flex items-center justify-center min-h-screen py-10 lg:px-10">
         <div
-          onClick={handleClose}
-          className=" lg:block absolute top-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
+          className={`bg-white rounded relative  h-auto transition-transform duration-300 ${isVisible ? "translate-y-0" : "translate-x-full"
+            }`}
         >
-          <img src={close} alt="" className="w-5 h-5" />
+          {/* Close button for desktop */}
+          <div
+            onClick={handleClose}
+            className=" absolute top-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
+          >
+            <img src={close} alt="Close" className="w-5 h-5" />
+          </div>
+          {children}
         </div>
-        {children}
       </div>
-      {/* <div
-        onClick={handleClose}
-        className="lg:hidden absolute bottom-2.5 right-2.5 bg-transparent border-none text-xl cursor-pointer text-black"
-      >
-        <button className="shadow-lg text-red-600 border px-2 rounded">Close</button>
-      </div> */}
+
+
     </div>
   );
 };

@@ -47,7 +47,7 @@ const MyProfile = () => {
     }, [dispatch]);
     return (
         <div className=" flex flex-row justify-between  py-5">
-            <div className="flex flex-col w-80  drop-shadow-xl bg-white rounded-xl text-[#19232c] h-96">
+            <div className="flex flex-col w-full lg:w-80  drop-shadow-xl bg-white rounded-xl text-[#19232c] h-auto lg:h-96">
                 {/* <p className="border min-w-10 w-fit text-center p-2">All</p> */}
                 <div
                     onClick={handleBalance}
@@ -67,6 +67,14 @@ const MyProfile = () => {
                         <hr />
                     </div>
                 </div>
+                <div className="lg:hidden">
+                    {isBalance && (
+                        <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
+                            <Balance />
+                        </div>
+                    )}
+                </div>
+
                 <div
                     onClick={handleWonTokens}
                     className={` font-bold w-full  cursor-pointer hover:bg-[#19232c] hover:text-white ${isMytokens ? "bg-[#19232c] text-white" : ""
@@ -85,6 +93,13 @@ const MyProfile = () => {
                     </div>
 
                 </div>
+                <div className="lg:hidden">
+                    {isMytokens && (
+                        <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
+                            <MyTokens />
+                        </div>
+                    )}
+                </div>
                 <div
                     onClick={handleSettings}
                     className={` font-bold w-full h-14 cursor-pointer hover:bg-[#19232c] hover:text-white ${isSettings ? "bg-[#19232c] text-white" : ""
@@ -102,6 +117,13 @@ const MyProfile = () => {
                         <hr />
                     </div>
                 </div>
+                <div className="lg:hidden">
+                    {isSettings && (
+                        <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
+                            <ProfileSettings />
+                        </div>
+                    )}
+                </div>
                 <div
                     onClick={click}
                     className={`min-w-10 font-bold w-full  h-14 cursor-pointer hover:bg-[#19232c] hover:text-white`}
@@ -112,7 +134,7 @@ const MyProfile = () => {
                                 <img src={logouticon} alt="" className="w-6 h-6" />
                                 Logout
                             </span>
-                            <img src={arrowright} alt="" className="w-3 h-3" />
+                            {/* <img src={arrowright} alt="" className="w-3 h-3" /> */}
                         </div>
 
                         <hr />
@@ -121,64 +143,22 @@ const MyProfile = () => {
             </div>
 
             <div
-                className="lg:h-auto w-[70%] bg-white rounded-xl relative drop-shadow-xl"
+                className=" hidden lg:block lg:h-auto w-[70%] bg-white rounded-xl relative drop-shadow-xl"
 
             >
                 {isBalance && (
                     <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
                         <Balance />
-                        {
-                            // [...Array(15)].map((_, idx) => (
-                            //     <div
-                            //         key={idx}
-                            //         className="flex flex-row items-center gap-3 p-4 bg-gray-300 rounded w-full lg:w-1/4"
-                            //     >
-                            //         {/* <div className="h-12 w-12 bg-gray-400 rounded"></div>
-                            //         <div className="flex flex-col space-y-2 w-full">
-                            //             <div className="h-4 w-24 bg-gray-400 rounded"></div>
-                            //             <div className="h-6 w-20 bg-gray-400 rounded"></div>
-                            //         </div> */}
-                            //     </div>
-                            // ))
-                        }
                     </div>
                 )}
                 {isMytokens && (
                     <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
                         <MyTokens />
-                        {
-                            // [...Array(6)].map((_, idx) => (
-                            //     <div
-                            //         key={idx}
-                            //         className="flex flex-row items-center gap-3 p-4 bg-gray-300 rounded w-full lg:w-1/3"
-                            //     >
-                            //         <div className="h-12 w-12 bg-gray-400 rounded"></div>
-                            //         <div className="flex flex-col space-y-2 w-full">
-                            //             <div className="h-4 w-24 bg-gray-400 rounded"></div>
-                            //             <div className="h-6 w-20 bg-gray-400 rounded"></div>
-                            //         </div>
-                            //     </div>
-                            // ))
-                        }
                     </div>
                 )}
                 {isSettings && (
                     <div className="flex flex-row lg:flex-row flex-wrap gap-3 py-2">
                         <ProfileSettings />
-                        {
-                            // [...Array(6)].map((_, idx) => (
-                            //     <div
-                            //         key={idx}
-                            //         className="flex flex-row items-center gap-3 p-4 bg-gray-300 rounded w-full lg:w-1/3"
-                            //     >
-                            //         <div className="h-12 w-12 bg-gray-400 rounded"></div>
-                            //         <div className="flex flex-col space-y-2 w-full">
-                            //             <div className="h-4 w-24 bg-gray-400 rounded"></div>
-                            //             <div className="h-6 w-20 bg-gray-400 rounded"></div>
-                            //         </div>
-                            //     </div>
-                            // ))
-                        }
                     </div>
                 )}
             </div>

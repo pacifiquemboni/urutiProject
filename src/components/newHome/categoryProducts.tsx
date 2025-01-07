@@ -103,7 +103,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
           ))}
         </div>
       ) : (
-        <div className="lg:my-5 flex flex-row gap-2 items-center flex-wrap h-128 lg:h-auto overflow-scroll lg:overflow-hidden">
+        <div className="lg:my-5 flex flex-row gap-2 items-center flex-wrap  ">
           {list.length > 0 ? (
             list.map((item, index) => (
               <div

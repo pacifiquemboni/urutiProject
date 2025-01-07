@@ -29,7 +29,7 @@ const Auth = () => {
   }, [success])
 
   return (
-    <div>
+    <div className="py-5">
       <div className="text-black flex cursor-pointer ">
         <div onClick={OpenLogin} className={`p-3 ${isLogin ? "text-[#19232c] border-b-4 border-[#FF9671]" : ""}`}>LOGIN</div>
         <div onClick={OpenSignup} className={`p-3 ${isSignup ? " text-[#19232c] border-b-4 border-[#FF9671]" : ""}`}>SIGNUP</div>

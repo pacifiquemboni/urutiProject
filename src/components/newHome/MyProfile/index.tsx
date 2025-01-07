@@ -6,8 +6,8 @@ import logo from "../../../assets/logo.png";
 // import notification from "../../../assets/notification.svg";
 import bgphoto from "../../../assets/newassets/walletBg.png"
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { GetProductByIdThunk } from "@/redux/features/actions/products";
+import {  useLayoutEffect, useState } from "react";
+// import { GetProductByIdThunk } from "@/redux/features/actions/products";
 import CopyTextComponent from "./copyText";
 // import { Link } from "react-router-dom";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
@@ -30,13 +30,13 @@ const MyWallet = () => {
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
-  const productId = localStorage.getItem("productId");
-  // console.log("prodcuctId:", productId);
-  useEffect(() => {
-    if (productId) {
-      dispatch(GetProductByIdThunk(productId));
-    }
-  }, [dispatch, productId]);
+  // const productId = localStorage.getItem("productId");
+  // // console.log("prodcuctId:", productId);
+  // useEffect(() => {
+  //   if (productId) {
+  //     dispatch(GetProductByIdThunk(productId));
+  //   }
+  // }, [dispatch, productId]);
   // console.log("by id info", info);
   console.log("user found", user);
   const [isProfile, setProfile] = useState(true);
@@ -77,7 +77,7 @@ const MyWallet = () => {
             }}
           >
             <div className="flex  lg:flex-row justify-between  items-start mx-1  md:mx-16">
-              <div className="flex flex-row gap-5 w-1/3">
+              <div className="flex flex-row gap-5  lg:w-1/3">
                 <div className="w-fit ">
                   <img src={logo} className="w-24 h-24 border-4 rounded-full" />
                 </div>
@@ -103,7 +103,7 @@ const MyWallet = () => {
 
               </div>
               <div className="flex gap-1">
-                <button className="border p-2 rounded-3xl bg-white" >
+                <button className="hidden lg:block border p-2 rounded-3xl bg-white" >
                   Confirm e-mail
                 </button>
                 <div className="hidden md:block">
@@ -115,7 +115,7 @@ const MyWallet = () => {
 
           </div>
           <hr />
-          <div className=" mx-16">
+          <div className="mx-2 lg:mx-16">
             <div className="flex">
               <div className={` p-3 ${isProfile ? "border-b-4 border-[#FF9671] text-[#FF9671]" : ""}`} onClick={handleProfile}>
                 Profile
