@@ -95,7 +95,8 @@ console.log("user data", user);
 
           {user ? (
             <>
-              <div className="flex flex-row justify-between items-center text-white  hover:shadow-xl border border-[#4a5b68] rounded-3xl cursor-default gap-2 p-2  w-40 text-sm h-10">
+            <div className="hidden lg:block">
+              <div className=" flex flex-row justify-between items-center text-white  hover:shadow-xl border border-[#4a5b68] rounded-3xl cursor-default gap-2 p-2  w-40 text-sm h-10">
                 <div className=" w-full text-sm p-1">
                   <p className="font-bold">balance:</p>
                   <div className="flex justify-between items-center w-full ">
@@ -107,6 +108,8 @@ console.log("user data", user);
                   <p>Deposit</p>
                 </div>
               </div>
+            </div>
+              
               <div className="flex flex-row justify-between cursor-default hover:shadow-xl border border-[#4a5b68] items-center rounded-3xl p-2 h-10 w-40">
                 <div onClick={togglewalletModel}>
                   <img src={profile} alt="" className="w-5 h-5 cursor-pointer" />
@@ -254,6 +257,18 @@ console.log("user data", user);
               </p>
             </div>
           </nav>
+          <div className="lg:block flex flex-row justify-between items-center text-white  hover:shadow-xl py-10 cursor-default gap-10 p-2  w-40 text-sm h-10">
+                <div className=" w-full text-lg p-1">
+                  <p className="font-bold">balance:</p>
+                  <div className="flex justify-between items-center w-full ">
+                    <p>$1000</p>
+                    <img src={arrowDown} alt="" className="w-3 h-3 cursor-pointer" />
+                  </div>
+                </div>
+                <div className="flex items-center justify-center  p-1 bg-[#FF9671] cursor-pointer rounded-xl">
+                  <p>Deposit</p>
+                </div>
+              </div>
         </div>
       )}
     </div>
