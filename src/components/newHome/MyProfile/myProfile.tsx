@@ -143,7 +143,7 @@ const MyProfile = () => {
             </div>
 
             <div
-                className=" hidden lg:block lg:h-auto w-[70%] bg-white rounded-xl relative drop-shadow-xl"
+                className=" hidden lg:block lg:h-auto w-[68%] bg-white rounded-xl relative drop-shadow-xl"
 
             >
                 {isBalance && (

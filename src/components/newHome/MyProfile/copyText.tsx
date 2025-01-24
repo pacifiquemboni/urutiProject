@@ -46,7 +46,7 @@ const CopyTextComponent = () => {
               onClick={copyText}
               className=" px-2 rounded-xl text-white flex items-center gap-1"
             >
-              <img src={copycode} alt="" className="w-5 h-5" />
+              <img src={copycode} alt="" className="w-10 h-10" />
               {/* {t("myWallet.copyCode")} */}
             </button>
           </Tooltip>

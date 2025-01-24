@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import CategoryModal from "./modal/modal";
+// import CategoryModal from "./modal/modal";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { GetCategoriesThunk } from "@/redux/features/actions/radios";
-import CategoryProducts from "./categoryProducts";
-import categoryImage from "../../assets/categoryIcon.png"
-import Tooltip from "./ToolKit";
+// import CategoryProducts from "./category/categoryProducts";
+import categoryImage from "../../../assets/categoryIcon.png"
+// import Tooltip from "./ToolKit";
 import { useTranslation } from "react-i18next";
-import AllProducts from "./AllProducts";
+// import AllProducts from "./AllProducts";
 import { GetProductsThunk } from "@/redux/features/actions/products";
+import CategoryModal from "../modal/modal";
+import CategoryProducts from "./categoryProducts";
+import Tooltip from "../ToolKit";
+import AllProducts from "../AllProducts";
 
 
 const AboutRight = () => {

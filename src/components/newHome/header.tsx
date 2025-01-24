@@ -35,7 +35,7 @@ const NEWHEADER = () => {
   const [walletModel, setwalletModel] = useState(false);
 
 
-  const { user, access_token } = useAppSelector((s) => s.user);
+  const { user, access_token, loading } = useAppSelector((s) => s.user);
   useLayoutEffect(() => {
     if (!user && access_token) dispatch(GetUserThunk());
   }, [access_token, dispatch, user]);
@@ -126,6 +126,9 @@ console.log("user data", user);
             </>
 
           ) : (
+            loading ? (
+              ''
+            ) : (
             <div className="flex flex-row">
               <div
                 onClick={toggleLoginModel}
@@ -146,7 +149,7 @@ console.log("user data", user);
                 <PlayModel children={<Auth />} onClose={closeModal}></PlayModel>
               )}
             </div>
-          )}
+          ))}
         </div>
       </div>
 

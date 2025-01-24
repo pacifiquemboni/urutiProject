@@ -96,16 +96,16 @@ const ProfileSettings = () => {
         </div>
       </div>
       <hr />
-      <div className="py-5">
+      <div className="py-5 ">
         {isProfileSettings && (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-2 items-center">
             <input
               type="text"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
               placeholder="First Name"
-              className="bg-[#F1F4FC] h-10 w-[48%] px-2"
+              className="bg-[#F1F4FC] h-10 w-[100%] lg:w-[48%] px-2"
             />
             <input
               type="text"
@@ -113,7 +113,7 @@ const ProfileSettings = () => {
               value={formData.lastName}
               onChange={handleChange}
               placeholder="Last Name"
-              className="bg-[#F1F4FC] h-10 w-[48%] px-2"
+              className="bg-[#F1F4FC] h-10 w-[100%] lg:w-[48%] px-2"
             />
             <input
               type="email"
@@ -121,7 +121,7 @@ const ProfileSettings = () => {
               value={formData.email}
               readOnly
               placeholder="Email"
-              className="bg-[#F1F4FC] h-10 w-[48%] px-2"
+              className="bg-[#F1F4FC] h-10 w-[100%] lg:w-[48%] px-2"
             />
             <input
               type="text"
@@ -129,12 +129,12 @@ const ProfileSettings = () => {
               value={formData.username}
               onChange={handleChange}
               placeholder="Username"
-              className="bg-[#F1F4FC] h-10 w-[48%] px-2"
+              className="bg-[#F1F4FC] h-10 w-[100%] lg:w-[48%] px-2"
             />
             <button
               type="submit"
               disabled={loading}
-              className="bg-[#FF9671] rounded-2xl text-white h-10 w-[48%] flex justify-center items-center"
+              className="bg-[#FF9671] rounded-2xl text-white h-10 w-[100%] lg:w-[48%] flex justify-center items-center"
             >
               {loading ? "Saving..." : "Save Changes"}
             </button>

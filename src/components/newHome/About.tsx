@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import AboutLeft from "./AboutLeft";
-import AboutRight from "./Categories";
-// import Casinos from "./casinos";
 import JoinFree from "./joinFree";
+import AboutRight from "./category/Categories";
 
 
 const About = () => {

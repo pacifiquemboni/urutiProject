@@ -6,7 +6,7 @@ interface ModalProps {
   children: ReactNode;
   onClose: () => void;
 }
-const PlayModel: React.FC<ModalProps> = ({ children, onClose }) => {
+const CategoryAuthModal: React.FC<ModalProps> = ({ children, onClose }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -27,9 +27,9 @@ const PlayModel: React.FC<ModalProps> = ({ children, onClose }) => {
       className={`fixed inset-0 bg-black bg-opacity-80 z-50 overflow-y-auto w-full transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
         }`}
     >
-      <div className="flex items-center justify-center min-h-screen lg:px-10">
+      <div className="flex items-center justify-center  py-2 lg:px-10">
         <div
-          className={`bg-white rounded relative  h-auto transition-transform duration-300 ${isVisible ? "translate-y-0" : "translate-x-full"
+          className={`bg-white rounded relative  transition-transform duration-300 ${isVisible ? "translate-y-0" : "translate-x-full"
             }`}
         >
           {/* Close button for desktop */}
@@ -48,4 +48,4 @@ const PlayModel: React.FC<ModalProps> = ({ children, onClose }) => {
   );
 };
 
-export default PlayModel;
+export default CategoryAuthModal;

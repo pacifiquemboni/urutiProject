@@ -121,6 +121,8 @@ export const UserSlice = createSlice({
       //get user
       .addCase(GetUserThunk.pending, (state) => {
         state.status = "pending";
+        state.loading = true;
+
       })
       .addCase(GetUserThunk.rejected, (state) => {
         state.status = "error";
