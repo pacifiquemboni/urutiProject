@@ -1,13 +1,14 @@
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { GetAllProductsByCategoryIdThunk } from "@/redux/features/actions/products";
-import price from "../../assets/price.svg";
-import product from "../../assets/product.svg";
+import price from "../../../assets/price.svg";
+import product from "../../../assets/product.svg";
 import { GetUserThunk } from "@/redux/features/actions/users/me";
-import CategoryModal from "./modal/modal";
-import Auth from "./Auth";
-import Play from "./MyProfile/play";
-import PlayModel from "./modal/playModel";
+// import CategoryModal from "../modal/modal";
+import Auth from "../Auth";
+import Play from "../MyProfile/play";
+import PlayModel from "../modal/playModel";
+import CategoryAuthModal from "../modal/catAuthModel";
 
 interface CategoryProductsProps {
   selectedItemId: string;
@@ -140,7 +141,7 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
                     </div>
                     <div className="flex flex-row items-center gap-4 text-black">
                       <img
-                        src={item.picture ? item.picture : `${product}`}
+                        src={item.picture ? item.picture : product}
                         alt="Product Logo"
                         className="w-20 h-20"
                       />
@@ -160,11 +161,15 @@ const CategoryProducts: React.FC<CategoryProductsProps> = ({
 
       </div>
       {loginModel && (
-        <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+        // <CategoryModal children={<Auth />} onClose={closeModal}></CategoryModal>
+        <CategoryAuthModal children={<Auth />} onClose={closeModal}></CategoryAuthModal>
       )}
-      {openPlayModel && (
-        <PlayModel children={<Play />} onClose={closePlayModal}></PlayModel>
+      <div className="w-96">
+        {openPlayModel && (
+        <PlayModel  children={<Play />} onClose={closePlayModal}></PlayModel>
       )}
+      </div>
+      
     </>
 
 
